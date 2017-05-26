@@ -130,9 +130,9 @@ void GearEngine::PhysicsEngine(float dt)
 	}
 
 	//Check for collisions
-	for (std::list<GearPhysicsBody*>::iterator ite = pbodies->begin(); ite != pbodies->end(); ite++) {
+	for (std::list<GearPhysicsBody*>::iterator ite = pbodies->begin(); ite != pbodies->end(); ++ite) {
 		if ((*ite)->state != PHYSICS_STATIC )(*ite)->vy -= PHYSICS_GRAVITY;
-		std::list<GearPhysicsBody*>::iterator nite = ite; nite++;
+		std::list<GearPhysicsBody*>::iterator nite = ite; ++nite;
 		while (nite != pbodies->end()) {
 			if ( (*ite)->state == PHYSICS_AWAKE || (*nite)->state == PHYSICS_AWAKE) {
 				float normal = (*ite)->Collide((*nite));
@@ -157,7 +157,7 @@ void GearEngine::PhysicsEngine(float dt)
 					if ((*nite)->OnCollision != 0)(	*nite)->OnCollision((void*)(*nite), (void*)(*ite) );
 				}
 			}
-			nite++;
+			++nite;
 		}
 	}
 }
