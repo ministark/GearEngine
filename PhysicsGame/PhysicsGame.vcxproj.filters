@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\GearEngine">
+      <UniqueIdentifier>{c55232cf-7836-4e13-848c-4325cb60224a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GearEngine\EngineObjects">
+      <UniqueIdentifier>{6b8128af-94b3-4b6e-a3ad-c4c27e19885e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GearEngine">
+      <UniqueIdentifier>{5bcd92e8-8f5a-4fb8-bff0-589dc2c004cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GearEngine\EngineObjects">
+      <UniqueIdentifier>{c2531e47-88fa-4e53-b2c2-f873464b8a52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{78c9d306-d9d4-4b72-8ffc-f1998c3bceb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{b912d107-ff58-4268-ad4a-46dedb67af61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameAssets">
+      <UniqueIdentifier>{f89f9101-4829-410b-8ed3-d8adda6015f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\GameAssets">
+      <UniqueIdentifier>{fc1fa973-038a-451c-98b2-9a8c8214abf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GearEngine\EngineJoints">
+      <UniqueIdentifier>{be662804-bdcd-47d1-a5a5-597fcc97c004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GearEngine\EngineJoints">
+      <UniqueIdentifier>{16c678e7-7b64-44a7-a79a-27c8a6637264}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GearSprites.cpp">
+      <Filter>Source Files\GearEngine\EngineObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GearPhysicsBody.cpp">
+      <Filter>Source Files\GearEngine\EngineObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWorld.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Walls.cpp">
+      <Filter>Source Files\Game\GameAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="Protagonist.cpp">
+      <Filter>Source Files\Game\GameAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="FoeFactory.cpp">
+      <Filter>Source Files\Game\GameAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="Foe.cpp">
+      <Filter>Source Files\Game\GameAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files\Game\GameAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="GearEngine.cpp">
+      <Filter>Source Files\GearEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="GearJoint.cpp">
+      <Filter>Source Files\GearEngine\EngineJoints</Filter>
+    </ClCompile>
+    <ClCompile Include="GearDistanceJointX.cpp">
+      <Filter>Source Files\GearEngine\EngineJoints</Filter>
+    </ClCompile>
+    <ClCompile Include="GearDistanceJointY.cpp">
+      <Filter>Source Files\GearEngine\EngineJoints</Filter>
+    </ClCompile>
+    <ClCompile Include="GearDistanceJoint.cpp">
+      <Filter>Source Files\GearEngine\EngineJoints</Filter>
+    </ClCompile>
+    <ClCompile Include="GearRopeJoint.cpp">
+      <Filter>Source Files\GearEngine\EngineJoints</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GearSettings.h">
+      <Filter>Header Files\GearEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="GearEngine.h">
+      <Filter>Header Files\GearEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="GearPhysicsBody.h">
+      <Filter>Header Files\GearEngine\EngineObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GearSprites.h">
+      <Filter>Header Files\GearEngine\EngineObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Walls.h">
+      <Filter>Header Files\Game\GameAssets</Filter>
+    </ClInclude>
+    <ClInclude Include="Protagonist.h">
+      <Filter>Header Files\Game\GameAssets</Filter>
+    </ClInclude>
+    <ClInclude Include="FoeFactory.h">
+      <Filter>Header Files\Game\GameAssets</Filter>
+    </ClInclude>
+    <ClInclude Include="Foe.h">
+      <Filter>Header Files\Game\GameAssets</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files\Game\GameAssets</Filter>
+    </ClInclude>
+    <ClInclude Include="GearJoint.h">
+      <Filter>Header Files\GearEngine\EngineJoints</Filter>
+    </ClInclude>
+    <ClInclude Include="GearDistanceJointX.h">
+      <Filter>Header Files\GearEngine\EngineJoints</Filter>
+    </ClInclude>
+    <ClInclude Include="GearDistanceJointY.h">
+      <Filter>Header Files\GearEngine\EngineJoints</Filter>
+    </ClInclude>
+    <ClInclude Include="GearDistanceJoint.h">
+      <Filter>Header Files\GearEngine\EngineJoints</Filter>
+    </ClInclude>
+    <ClInclude Include="GearRopeJoint.h">
+      <Filter>Header Files\GearEngine\EngineJoints</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
