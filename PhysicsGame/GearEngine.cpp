@@ -125,7 +125,7 @@ void GearEngine::PhysicsEngine(float dt)
 {
 	Kinematics(dt);
 	//Check for constraints
-	for (std::list<GearJoint*>::iterator ite = joints->begin(); ite != joints->end(); ite++) {
+	for (std::list<GearJoint*>::iterator ite = joints->begin(); ite != joints->end(); ++ite) {
 		(*ite)->ResolveConstraint();
 	}
 
