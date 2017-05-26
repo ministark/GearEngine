@@ -164,7 +164,7 @@ void GearEngine::PhysicsEngine(float dt)
 
 void GearEngine::Kinematics(float dt)
 {
-	for (std::list<GearPhysicsBody*>::iterator ite = pbodies->begin(); ite != pbodies->end(); ite++) {
+	for (std::list<GearPhysicsBody*>::iterator ite = pbodies->begin(); ite != pbodies->end(); ++ite) {
 		if(fabs((*ite)->vx) > PHYSICS_VMIN) (*ite)->x = (*ite)->x + (*ite)->vx*dt;
 		if(fabs((*ite)->vy) > PHYSICS_VMIN) (*ite)->y = (*ite)->y + (*ite)->vy*dt;
 	}
