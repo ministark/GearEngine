@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PlayState" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAwAABAAYAAAAAAAEAgAAAABAAAAAIIABACAEghAAQ=</HashCode>
+      <FileName>PlayState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GearEngine" Collapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAQQAIAAgCAAAAAAEAABYAiAAARAAAACAABAACQgAA=</HashCode>
+      <FileName>GearEngine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GearPhysicsBody" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAAAACAAAAAARCQgAABAUAERAAAAAGINBgAAABAAA=</HashCode>
+      <FileName>GearPhysicsBody.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GearSprite" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAIAAAAAAAQAQAAABAAAAQAQAAAAABIAAAAAwAA=</HashCode>
+      <FileName>GearSprites.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GearDistanceJoint" Collapsed="true">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAgAAAAAAAAAAAAAAgABAAAAAEAAIAAA=</HashCode>
+      <FileName>GearDistanceJoint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GearDistanceJointX" Collapsed="true">
+    <Position X="5.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAggAAAAAAAAAAAAAgABAAAAAEAAAAAA=</HashCode>
+      <FileName>GearDistanceJointX.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GearDistanceJointY" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAhAAAAAAAAAAAAAAgABAAAAAEAAAAAA=</HashCode>
+      <FileName>GearDistanceJointY.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GearJoint" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAABAAAAAAAAAAAAAAAAAAAAAEAAgQAA=</HashCode>
+      <FileName>GearJoint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GearRopeJoint" Collapsed="true">
+    <Position X="0.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAwAAAAAAAAAAAgAAAABAAAAAEAAAAAA=</HashCode>
+      <FileName>GearRopeJoint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWorld" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAREAYAABAAAAlIhAEAAAAAAAQQAEBAAACAQSAY=</HashCode>
+      <FileName>GameWorld.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foe" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAMQAAAAAIABAAAAAgAAg=</HashCode>
+      <FileName>Foe.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoeFactory" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEBAAAAACQAA=</HashCode>
+      <FileName>FoeFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projectile" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAgAgAAAAAQABAAAIABAAAAAAIAA=</HashCode>
+      <FileName>Projectile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Protagonist" Collapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAIAAAAAAAAgAACAAAAAQAAAAAIBRBAAAAAAAg=</HashCode>
+      <FileName>Protagonist.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Walls" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAIAAAAAAAAIAAAAACAAAAAAAAAAACACAAAA=</HashCode>
+      <FileName>Walls.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gear::State" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAARACBFgBIAA=</HashCode>
+      <FileName>State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gear::StateManager" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAgAAAAAAAAEAAAAEABAAAAABCAA=</HashCode>
+      <FileName>StateManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="CUSTOMVERTEX" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAASYAE=</HashCode>
+      <FileName>GearSettings.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="EventListner" Collapsed="true">
+    <Position X="10" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GearPhysicsBody.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
