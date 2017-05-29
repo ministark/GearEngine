@@ -1,5 +1,5 @@
 #pragma once
-namespace GearEngine {
+namespace Gear {
 	class State
 	{
 	public:

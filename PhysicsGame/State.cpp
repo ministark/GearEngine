@@ -1,6 +1,5 @@
 #include "State.h"
-using namespace GearEngine;
-
+using namespace Gear;
 State::State()
 {
 }

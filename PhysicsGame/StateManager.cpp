@@ -1,28 +1,27 @@
 #include "StateManager.h"
-using namespace GearEngine;
-
+using namespace Gear;
 
 StateManager::StateManager()
 {
 }
 
-void GearEngine::StateManager::AddState(State * s)
+void StateManager::AddState(State * s)
 {
 	states.push_back(s);
 }
 
-void GearEngine::StateManager::RemoveState()
+void StateManager::RemoveState()
 {
 	states.pop_back();
 }
 
-void GearEngine::StateManager::Update()
+void StateManager::Update()
 {
 	states.back()->Update();
 }
 
 
-void GearEngine::StateManager::Render()
+void StateManager::Render()
 {
 	states.back()->Render();
 }

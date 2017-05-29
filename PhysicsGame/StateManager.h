@@ -1,9 +1,7 @@
 #include <vector>
-
 #include "State.h"
 #pragma once
-
-namespace GearEngine {
+namespace Gear {
 	class StateManager
 	{
 	public:
