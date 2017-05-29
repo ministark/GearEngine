@@ -2,6 +2,7 @@
 using namespace Gear;
 State::State()
 {
+	pause = 0;
 }
 
 

@@ -9,19 +9,29 @@
 class PlayState: public Gear::State
 {
 public:
+	//Virtual Redefination
 	void Init();
 	void Cleanup();
 	void Pause();
 	void Resume();
-	void Update();
+	State* InputHandle(MSG*);
 	void Render();
-	PlayState* GetInstance(GearEngine*);
+
+	//GetInstance for this class being Singleton
+	static PlayState* GetInstance(GearEngine *);
+	void ResetInstance();
 	~PlayState();
-private:
-	GearEngine* geareng;
+
+	//Scene Variables
 	Walls *edges;
-	GearEngine *geareng;
-	PlayState();
-	static PlayState *instance;
+	Protagonist *main;
+	Foe *foe;
+	FoeFactory *efac;
+	std::list<Projectile*> stars;
+
+private:
+	GearEngine * geareng;
+	PlayState(GearEngine*);
+	static PlayState *inst ;
 };
 
