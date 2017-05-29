@@ -138,7 +138,7 @@ void GearEngine::PhysicsEngine(float dt)
 				float normal = (*ite)->Collide((*nite));
 				float min_e = min((*ite)->e, (*nite)->e);
 				//Resolve the collisions
-				if (normal > 0 && ((*nite)->vx - (*ite)->vx)*((*nite)->x - (*ite)->x) < 0) {
+				if (normal > 0 && ((*nite)->vx - (*ite)->vx)*((*nite)->x - (*ite)->x) <= 0) {
 					float j = (1.0f+min_e) * ((*nite)->vx - (*ite)->vx); j /= (*nite)->invmass + (*ite)->invmass;
 					(*ite)->vx += j*(*ite)->invmass; (*nite)->vx += (-j)*(*nite)->invmass;
 					float corr = max(normal - PHYSICS_SLOP, 0.0f)*PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass);
@@ -147,7 +147,7 @@ void GearEngine::PhysicsEngine(float dt)
 					if((*ite)->OnCollision != 0)	 (*ite)->OnCollision( (void*)(*ite), (void*)(*nite) );
 					if ((*nite)->OnCollision != 0)	(*nite)->OnCollision((void*)(*nite), (void*)(*ite) );
 				}
-				else if (normal < 0 && ((*nite)->vy - (*ite)->vy)*((*nite)->y - (*ite)->y) < 0) {
+				else if (normal < 0 && ((*nite)->vy - (*ite)->vy)*((*nite)->y - (*ite)->y) <= 0) {
 					float j = (1.0f + min_e) * ((*nite)->vy - (*ite)->vy); j /= (*nite)->invmass + (*ite)->invmass;
 					(*ite)->vy += j*(*ite)->invmass; (*nite)->vy += (-j)*(*nite)->invmass;
 					float corr = max(-normal - PHYSICS_SLOP, 0.0f)*PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass);
