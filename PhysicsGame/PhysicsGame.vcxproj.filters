@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Source Files\GearEngine">
       <UniqueIdentifier>{c55232cf-7836-4e13-848c-4325cb60224a}</UniqueIdentifier>
     </Filter>
@@ -42,6 +38,15 @@
     </Filter>
     <Filter Include="Header Files\GearEngine\EngineJoints">
       <UniqueIdentifier>{16c678e7-7b64-44a7-a79a-27c8a6637264}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GearEngine\StateManger">
+      <UniqueIdentifier>{5d0e8130-2101-4be8-9a81-dfdc679d88c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GearEngine\StateManger">
+      <UniqueIdentifier>{6651f09d-897e-4f91-926a-e25d9ef03ff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameStates">
+      <UniqueIdentifier>{d64c8ca1-47b2-45b5-a4a4-562a6079ec42}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +94,15 @@
     </ClCompile>
     <ClCompile Include="GearRopeJoint.cpp">
       <Filter>Source Files\GearEngine\EngineJoints</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files\GearEngine\StateManger</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Source Files\GearEngine\StateManger</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>Source Files\Game\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,5 +154,17 @@
     <ClInclude Include="Constants.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files\GearEngine\StateManger</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Header Files\GearEngine\StateManger</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
 #include "GameWorld.h"
 
 
-
 void GameWorld::addStar(float x, float y, float vx, float vy)
 {
 	stars.push_back(new Projectile(geareng, x, y, vx, vy));
@@ -27,8 +26,8 @@ GameWorld::GameWorld(GearEngine *eng)
 	main = new Protagonist(geareng);
 	foe = new Foe(geareng);
 	//geareng->CreateGearDistanceJointX(main->body,foe->body , 200, 10, 0);
-	//geareng->CreateGearDistanceJointY(main->body, foe->body, 200, 10, 0);
-	//geareng->CreateGearRopeJoint(main->body, foe->body, 200, 100, 10);
+	geareng->CreateGearDistanceJoint(main->body, foe->body, 200, 10, 0);
+	//geareng->CreateGearRopeJoint(main->body, foe->body, 400, 100, 10);
 
 
 	efac = new FoeFactory(geareng);

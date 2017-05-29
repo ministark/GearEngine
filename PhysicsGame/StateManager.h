@@ -1,5 +1,6 @@
 #include <vector>
 #include "State.h"
+
 #pragma once
 namespace Gear {
 	class StateManager
@@ -8,7 +9,8 @@ namespace Gear {
 		StateManager();
 		void AddState(State*);
 		void RemoveState();
-		void Update();
+		void Inputhandle(MSG*);
+		bool RunScene(MSG*);
 		void Render();
 		~StateManager();
 	private:

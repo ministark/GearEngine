@@ -15,9 +15,19 @@ void StateManager::RemoveState()
 	states.pop_back();
 }
 
-void StateManager::Update()
+void StateManager::Inputhandle(MSG*)
 {
-	states.back()->Update();
+}
+
+bool Gear::StateManager::RunScene(MSG *msg)
+{
+	if (states.empty()) return true;
+	auto ite = states.rbegin();
+	while ((*ite)->InputCallBack)
+
+
+
+	return false;
 }
 
 
