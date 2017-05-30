@@ -32,45 +32,56 @@ void GearEngine::initD3D(HWND hWnd,bool (*ff)(),bool (*rf)())
 
 }
 
-void GearEngine::render_frame(float dt)
-{	
-	// Let Game Process and Physics Engine work
-	FrameFunc();
-	PhysicsEngine(dt);
+void GearEngine::InitRender()
+{
 	d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(255, 255, 255), 1.0f, 0);
 	d3ddev->BeginScene();
 
 	// Setting the Camera
-	D3DXMATRIX matView;  
+	D3DXMATRIX matView;
 	D3DXMatrixLookAtLH(&matView,
 		&D3DXVECTOR3(CAMERA_POSX, CAMERA_POSY, CAMERA_POSZ),    // the camera position
 		&D3DXVECTOR3(CAMERA_FACEX, CAMERA_FACEY, CAMERA_FACEZ),    // the look-at position
 		&D3DXVECTOR3(CAMERA_UPX, CAMERA_UPY, CAMERA_POSZ));    // the up direction
 	d3ddev->SetTransform(D3DTS_VIEW, &matView);    // set the view transform to matView
 
-	// Setting Orthogonal Projection
+												   // Setting Orthogonal Projection
 	D3DXMATRIX matProj;
 	D3DXMatrixOrthoLH(&matProj, SCREEN_WIDTH, SCREEN_HEIGHT, 1.0f, 100.0f);
 	d3ddev->SetTransform(D3DTS_PROJECTION, &matProj);
+}
 
-	// Let Game render the sprites
-	RenderFunc();
-
+void GearEngine::CleanRender()
+{
 	// End Scene
 	d3ddev->EndScene();
 	d3ddev->Present(NULL, NULL, NULL, NULL);
 
 	// Delete all the marked Object
 	std::list<GearSprite*>::iterator ite1 = sprites->begin();
-	while ( ite1 != sprites->end()) {
+	while (ite1 != sprites->end()) {
 		if ((*ite1)->markForDeletion) { delete (*ite1); ite1 = sprites->erase(ite1); }
 		else ite1++;
 	}
 	std::list<GearPhysicsBody*>::iterator ite2 = pbodies->begin();
 	while (ite2 != pbodies->end()) {
-		if ((*ite2)->markForDeletion) { delete (*ite2); ite2 =  pbodies->erase(ite2); }
+		if ((*ite2)->markForDeletion) { delete (*ite2); ite2 = pbodies->erase(ite2); }
 		else ite2++;
 	}
+
+}
+
+void GearEngine::render_frame(float dt)
+{	
+	// Let Game Process and Physics Engine work
+	FrameFunc();
+	PhysicsEngine(dt);
+	InitRender();
+
+	// Let Game render the sprites
+	RenderFunc();
+	CleanRender();
+	
 }
 
 void GearEngine::cleanD3D(void)

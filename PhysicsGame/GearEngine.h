@@ -10,6 +10,7 @@
 #include "GearDistanceJoint.h"
 #include "GearRopeJoint.h"
 #include <list>
+#pragma once
 
 
 class GearEngine
@@ -28,6 +29,8 @@ class GearEngine
 public:
 	GearEngine();
 	void initD3D(HWND hWnd, bool (*)(), bool (*)());    // sets up and initializes Direct3D
+	void InitRender();
+	void CleanRender();
 	void render_frame(float dt);    // renders a single frame
 	GearSprite* CreateSprite(float,float,std::string);
 	GearPhysicsBody* CreatePhysicsBody(float, float, float, float, float, float, float,float, int);

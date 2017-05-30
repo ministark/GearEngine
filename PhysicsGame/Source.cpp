@@ -74,7 +74,6 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 	reng->initD3D(hWnd,FrameFunc,RenderFunc);
 	gw = new GameWorld(reng);
 
-
 	MSG msg;
 	while (TRUE)
 	{
