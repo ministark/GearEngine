@@ -1,4 +1,5 @@
 #include "State.h"
+#include "StateManager.h"
 #include "Constants.h"
 #include "Walls.h"
 #include "Protagonist.h"
@@ -15,6 +16,7 @@ public:
 	void Pause();
 	void Resume();
 	State* InputHandle(MSG*);
+	void Update();
 	void Render();
 
 	//GetInstance for this class being Singleton
@@ -30,7 +32,6 @@ public:
 	std::list<Projectile*> stars;
 
 private:
-	GearEngine * geareng;
 	PlayState(GearEngine*);
 	static PlayState *inst ;
 };

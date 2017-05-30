@@ -9,6 +9,7 @@ PlayState::PlayState(GearEngine* eng)
 	geareng = eng;
 	InputCallBack = 0;
 	RenderCallBack = 0;
+	UpdateCallBack = 0;
 	Init();
 }
 
@@ -46,11 +47,39 @@ void PlayState::Resume()
 
 State* PlayState::InputHandle(MSG* msg)
 {
+
 	return nullptr;
+}
+
+void PlayState::Update()
+{
+	//Time step could be introduced here
 }
 
 void PlayState::Render()
 {
+	geareng->InitRender();
+	main->Render();
+	foe->Render();
+	efac->Render();
+	for (std::list<Projectile*>::iterator ite = stars.begin(); ite != stars.end(); ite++) {
+		(*ite)->Render();
+	}
+	//Remove stars
+	std::list<Projectile*>::iterator ite = stars.begin();
+	while (ite != stars.end()) {
+		if ((*ite)->dead || (*ite)->outOfScreen()) {
+			(*ite)->body->Remove();
+			delete (*ite); //Free the heap
+			ite = stars.erase(ite);
+		}
+		else  ite++;
+	}
+	efac->Clean();
+
+	//Clear all the deleted physicsbody
+	geareng->CleanRender();
+	//StateManager *inst = StateManager::GetInstance();
 }
 
 PlayState* PlayState::GetInstance(GearEngine* eng)

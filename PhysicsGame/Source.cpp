@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <windowsx.h>
 #include "GameWorld.h"
+#include "PlayState.h"
 #include <ctime>
 
 #define GM gw->main
@@ -12,38 +13,38 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 
 
 bool FrameFunc() {
-	// Movement
-	if (GM->ishuman) {
-		if (gw->ka) { GM->addvx(PLAYER_SENSITIVITY); }
-		if (gw->kd) { GM->addvx(-PLAYER_SENSITIVITY); }
-		if (gw->kw && !gw->pkw && fabs(GM->body->vy) < VELOCITY_LOW ) { GM->addvy(PLAYER_JUMP); } //Add grounded condition
-		//	Bullet Firing
-		if (gw->mleft && !gw->pmleft) gw->addStar(GM->body->x, GM->body->y, (gw->mx - GM->body->x)*BULLET_SPEED, (gw->my - GM->body->y)*BULLET_SPEED);
-		//Velocity Restriction
-		(GM->body->vx > 0) ? GM->body->vx = min(PLAYER_SPEEDX, GM->body->vx) : GM->body->vx = max(-PLAYER_SPEEDX, GM->body->vx);
-		(GM->body->vy > 0) ? GM->body->vy = min(PLAYER_SPEEDY, GM->body->vy) : GM->body->vy = max(-PLAYER_SPEEDY, GM->body->vy);
-	}
-	else {
-		if (gw->ka) { gw->main->addvx( PLAYER_FLY); }
-		if (gw->kd) { gw->main->addvx(-PLAYER_FLY); }
-		if (gw->kw) { gw->main->addvy( PLAYER_FLY); }
-		if (gw->ks) { gw->main->addvy(-PLAYER_FLY); }
-		//Disabling gravity for the Skeleton
-		GM->addvy(PHYSICS_GRAVITY); 
-		//Velocity Restriction
-		(GM->body->vx > 0) ? GM->body->vx = min(PLAYER_FLYX, GM->body->vx) : GM->body->vx = max(-PLAYER_FLYX, GM->body->vx);
-		(GM->body->vy > 0) ? GM->body->vy = min(PLAYER_FLYY, GM->body->vy) : GM->body->vy = max(-PLAYER_FLYY, GM->body->vy);
-	}
+	//// Movement
+	//if (GM->ishuman) {
+	//	if (gw->ka) { GM->addvx(PLAYER_SENSITIVITY); }
+	//	if (gw->kd) { GM->addvx(-PLAYER_SENSITIVITY); }
+	//	if (gw->kw && !gw->pkw && fabs(GM->body->vy) < VELOCITY_LOW ) { GM->addvy(PLAYER_JUMP); } //Add grounded condition
+	//	//	Bullet Firing
+	//	if (gw->mleft && !gw->pmleft) gw->addStar(GM->body->x, GM->body->y, (gw->mx - GM->body->x)*BULLET_SPEED, (gw->my - GM->body->y)*BULLET_SPEED);
+	//	//Velocity Restriction
+	//	(GM->body->vx > 0) ? GM->body->vx = min(PLAYER_SPEEDX, GM->body->vx) : GM->body->vx = max(-PLAYER_SPEEDX, GM->body->vx);
+	//	(GM->body->vy > 0) ? GM->body->vy = min(PLAYER_SPEEDY, GM->body->vy) : GM->body->vy = max(-PLAYER_SPEEDY, GM->body->vy);
+	//}
+	//else {
+	//	if (gw->ka) { gw->main->addvx( PLAYER_FLY); }
+	//	if (gw->kd) { gw->main->addvx(-PLAYER_FLY); }
+	//	if (gw->kw) { gw->main->addvy( PLAYER_FLY); }
+	//	if (gw->ks) { gw->main->addvy(-PLAYER_FLY); }
+	//	//Disabling gravity for the Skeleton
+	//	GM->addvy(PHYSICS_GRAVITY); 
+	//	//Velocity Restriction
+	//	(GM->body->vx > 0) ? GM->body->vx = min(PLAYER_FLYX, GM->body->vx) : GM->body->vx = max(-PLAYER_FLYX, GM->body->vx);
+	//	(GM->body->vy > 0) ? GM->body->vy = min(PLAYER_FLYY, GM->body->vy) : GM->body->vy = max(-PLAYER_FLYY, GM->body->vy);
+	//}
 
 
-	if (gw->kshift && !gw->pkshift) GM->ishuman = !GM->ishuman;
-	gw->setPrev();
+	//if (gw->kshift && !gw->pkshift) GM->ishuman = !GM->ishuman;
+	//gw->setPrev();
 	return true;
 }
 
 bool RenderFunc() {
-	gw->Render();//Displays all objects
-	gw->Clean();//Removes all the killed objects
+	//gw->Render();//Displays all objects
+	//gw->Clean();//Removes all the killed objects
 	return true;
 }
 // the entry point for any Windows program
@@ -73,7 +74,8 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 	srand((int)time(0));
 	reng->initD3D(hWnd,FrameFunc,RenderFunc);
 	gw = new GameWorld(reng);
-
+	Gear::StateManager *sm = Gear::StateManager::GetInstance();
+	sm->AddState(PlayState::GetInstance(reng));
 	MSG msg;
 	while (TRUE)
 	{
@@ -81,11 +83,14 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
+		//	sm->RunScene(&msg);
 		}
 
 		if (msg.message == WM_QUIT)
 			break;
-		reng->render_frame(PHYSICS_DT);
+		sm->RunScene(&msg);
+
+		//reng->render_frame(PHYSICS_DT);
 	}
 
 	// clean up DirectX and COM

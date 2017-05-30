@@ -1,5 +1,5 @@
 #include "GearEngine.h"
-
+#include "StateManager.h"
 
 /*SCREEN SETTINGS*/
 #define SCREEN_PADX			20
