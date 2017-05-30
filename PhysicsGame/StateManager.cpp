@@ -24,14 +24,21 @@ void Gear::StateManager::ClearStack()
 
 void StateManager::Inputhandle(MSG* msg)
 {
-	auto ite = states.rbegin();
-	while (ite != states.rend()) {
-		(*ite)->InputHandle(msg); 
-		if ((*ite)->InputCallBack)
-			ite++;
-		else
-			break;
+	while (PeekMessage(msg, NULL, 0, 0, PM_REMOVE))
+	{
+		TranslateMessage(msg);
+		auto ite = states.rbegin();
+		while (ite != states.rend()) {
+			(*ite)->InputHandle(msg);
+			if ((*ite)->InputCallBack)
+				ite++;
+			else
+				break;
+		}
+		DispatchMessage(msg);
 	}
+	
+	
 }
 
 void Gear::StateManager::Update()
@@ -50,7 +57,7 @@ bool Gear::StateManager::RunScene(MSG *msg)
 {
 	if (states.empty()) return true;
 
-	Inputhandle(msg);
+	Inputhandle(msg); 	if (msg->message == WM_QUIT) return true;
 	Update();
 	Render();
 

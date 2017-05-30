@@ -54,6 +54,7 @@ State* PlayState::InputHandle(MSG* msg)
 void PlayState::Update()
 {
 	//Time step could be introduced here
+	geareng->PhysicsEngine(PHYSICS_DT);
 }
 
 void PlayState::Render()

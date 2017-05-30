@@ -131,7 +131,7 @@ GearJoint * GearEngine::CreateGearRopeJoint(GearPhysicsBody *b1, GearPhysicsBody
 	return joints->back();
 }
 
-
+// Physics of the world moves ahead by dt step
 void GearEngine::PhysicsEngine(float dt)
 {
 	Kinematics(dt);

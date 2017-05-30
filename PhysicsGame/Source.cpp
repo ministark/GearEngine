@@ -77,19 +77,9 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 	Gear::StateManager *sm = Gear::StateManager::GetInstance();
 	sm->AddState(PlayState::GetInstance(reng));
 	MSG msg;
-	while (TRUE)
+	while (!sm->RunScene(&msg))
 	{
-		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		//	sm->RunScene(&msg);
-		}
-
-		if (msg.message == WM_QUIT)
-			break;
-		sm->RunScene(&msg);
-
+		
 		//reng->render_frame(PHYSICS_DT);
 	}
 

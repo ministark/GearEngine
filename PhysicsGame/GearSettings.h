@@ -26,7 +26,7 @@
 	#define PHYSICS_VMAX		10 
 	#define PHYSICS_DT			0.05f
 	#define PHYSICS_FREEZE		10
-	#define PHYSICS_GRAVITY		0//5.0f	
+	#define PHYSICS_GRAVITY		5.0f	
 	#define PHYSICS_PEN			0.6f
 	#define PHYSICS_SLOP		0.1f
 
