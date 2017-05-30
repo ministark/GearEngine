@@ -25,16 +25,24 @@ void Gear::StateManager::ClearStack()
 void StateManager::Inputhandle(MSG* msg)
 {
 	auto ite = states.rbegin();
-	while ((*ite)->InputCallBack && ite != states.rend()) {
-		(*ite)->InputHandle(msg); ite++;
+	while (ite != states.rend()) {
+		(*ite)->InputHandle(msg); 
+		if ((*ite)->InputCallBack)
+			ite++;
+		else
+			break;
 	}
 }
 
 void Gear::StateManager::Update()
 {
 	auto ite = states.rbegin();
-	while ((*ite)->UpdateCallBack && ite != states.rend()) {
-		(*ite)->Update(); ite++;
+	while ( ite != states.rend()) {
+		(*ite)->Update(); 
+		if ((*ite)->UpdateCallBack)
+			ite++;
+		else
+			break;
 	}
 }
 
