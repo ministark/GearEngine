@@ -1,4 +1,5 @@
 #include "StateManager.h"
+#include <algorithm>
 using namespace Gear;
 
 StateManager* StateManager::inst = NULL;
@@ -25,13 +26,15 @@ void Gear::StateManager::ClearStack()
 
 void StateManager::Inputhandle()
 {
+	//Update Stack as active
+	pstates = states;
+
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 	{
 		TranslateMessage(&msg);
-		auto ite = states.rbegin();
-		while (ite != states.rend()) {
+		auto ite = pstates.rbegin();
+		while (ite != pstates.rend()) {
 			(*ite)->InputHandle(&msg);
-			if (states.empty()) return;
 			if ((*ite)->InputCallBack)
 				ite++;
 			else
@@ -42,9 +45,8 @@ void StateManager::Inputhandle()
 
 void Gear::StateManager::Update()
 {
-	if (states.empty()) return;
-	auto ite = states.rbegin();
-	while ( ite != states.rend()) {
+	auto ite = pstates.rbegin();
+	while ( ite != pstates.rend()) {
 		(*ite)->Update(); 
 		if ((*ite)->UpdateCallBack)
 			ite++;
@@ -56,6 +58,7 @@ void Gear::StateManager::Update()
 bool Gear::StateManager::RunScene()
 {
 	if (states.empty()) return true;
+
 	Inputhandle(); 	
 
 	Update();
@@ -76,18 +79,22 @@ StateManager * Gear::StateManager::GetInstance( GearEngine* eng)
 
 void StateManager::Render()
 {
-	if (states.empty()) return;
+	std::vector<State*> tobeRender;
 	geareng->InitRender();
-	auto ite = states.rbegin();
-	while ( ite != states.rend()) {
-		(*ite)->Render(); 
+	auto ite = pstates.rbegin();
+	while ( ite != pstates.rend()) {
+		tobeRender.push_back((*ite));
 		if ((*ite)->RenderCallBack)
 			ite++;
 		else
 			break;
 	}
+	auto ite1 = tobeRender.begin();
+	while (ite1 != tobeRender.end()) {
+		(*ite1)->Render(); ite1++;
+	}
 	geareng->CleanRender();
-
+	
 }
 
 StateManager::~StateManager()
