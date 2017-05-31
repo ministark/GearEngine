@@ -7,8 +7,9 @@ void GearSprite::Remove()
 	markForDeletion = true;
 }
 
-GearSprite::GearSprite(LPDIRECT3DDEVICE9 D3ddev, float width, float height, std::string image)
+GearSprite::GearSprite(LPDIRECT3DDEVICE9 D3ddev, float w, float h, std::string image)
 {
+	width = w; height = h;
 	markForDeletion = 0;
 	d3ddev = D3ddev;
 
