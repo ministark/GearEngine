@@ -3,8 +3,9 @@ using namespace Gear;
 
 StateManager* StateManager::inst = NULL;
 
-StateManager::StateManager()
+StateManager::StateManager(GearEngine *eng)
 {
+	geareng = eng;
 }
 
 void StateManager::AddState(State * s)
@@ -22,23 +23,20 @@ void Gear::StateManager::ClearStack()
 	states.clear();
 }
 
-void StateManager::Inputhandle(MSG* msg)
+void StateManager::Inputhandle()
 {
-	while (PeekMessage(msg, NULL, 0, 0, PM_REMOVE))
+	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 	{
-		TranslateMessage(msg);
+		TranslateMessage(&msg);
 		auto ite = states.rbegin();
 		while (ite != states.rend()) {
-			(*ite)->InputHandle(msg);
+			(*ite)->InputHandle(&msg);
 			if ((*ite)->InputCallBack)
 				ite++;
 			else
 				break;
 		}
-		DispatchMessage(msg);
 	}
-	
-	
 }
 
 void Gear::StateManager::Update()
@@ -53,21 +51,21 @@ void Gear::StateManager::Update()
 	}
 }
 
-bool Gear::StateManager::RunScene(MSG *msg)
+bool Gear::StateManager::RunScene()
 {
 	if (states.empty()) return true;
 
-	Inputhandle(msg); 	if (msg->message == WM_QUIT) return true;
+	Inputhandle(); 	
 	Update();
 	Render();
 
 	return false;
 }
 
-StateManager * Gear::StateManager::GetInstance()
+StateManager * Gear::StateManager::GetInstance( GearEngine* eng)
 {
 	if (!inst) {
-		inst = new StateManager();
+		inst = new StateManager(eng);
 	}
 	return inst;
 }
@@ -75,6 +73,7 @@ StateManager * Gear::StateManager::GetInstance()
 
 void StateManager::Render()
 {
+	geareng->InitRender();
 	auto ite = states.rbegin();
 	while ( ite != states.rend()) {
 		(*ite)->Render(); 
@@ -83,6 +82,8 @@ void StateManager::Render()
 		else
 			break;
 	}
+	geareng->CleanRender();
+
 }
 
 StateManager::~StateManager()

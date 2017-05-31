@@ -15,7 +15,7 @@ public:
 	void Cleanup();
 	void Pause();
 	void Resume();
-	State* InputHandle(MSG*);
+	void InputHandle(MSG*);
 	void Update();
 	void Render();
 
@@ -30,6 +30,10 @@ public:
 	Foe *foe;
 	FoeFactory *efac;
 	std::list<Projectile*> stars;
+
+	//Input Variables
+	bool key_w, key_a, key_s, key_d, key_shift, mouse_l, pkey_w, pkey_shift, pmouse_l;
+	float mouse_x, mouse_y;
 
 private:
 	PlayState(GearEngine*);
