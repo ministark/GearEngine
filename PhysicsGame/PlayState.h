@@ -25,10 +25,7 @@ public:
 	~PlayState();
 
 	//Scene Variables
-	Walls *edges;
-	Protagonist *main;
-	Foe *foe;
-	FoeFactory *efac;
+	
 	std::list<Projectile*> stars;
 
 	//Input Variables
@@ -36,6 +33,11 @@ public:
 	float mouse_x, mouse_y;
 
 private:
+	GearSprite  *background, *sun;
+	Walls *edges;
+	Protagonist *main;
+	Foe *foe;
+	FoeFactory *efac;
 	PlayState(GearEngine*);
 	static PlayState *inst ;
 };

@@ -18,6 +18,9 @@ PlayState::PlayState(GearEngine* eng)
 void PlayState::Init()
 {
 	//Set the enviornment
+	background = geareng->CreateSprite(SCREEN_WIDTH, SCREEN_HEIGHT, "Image/Background/PlayBackground.png");
+	sun = geareng->CreateSprite(518, 659, "Image/Background/Sun.png");
+
 	edges = new Walls(geareng);
 	//Set the Player and AI
 	main = new Protagonist(geareng);
@@ -33,6 +36,8 @@ void PlayState::Init()
 
 void PlayState::Cleanup()
 {
+	background->Remove();
+	sun->Remove();
 	delete edges;
 	delete main;
 	delete foe;
@@ -158,6 +163,9 @@ void PlayState::Update()
 
 void PlayState::Render()
 {
+	background->Render(0,0);
+	sun->Render(350, 100);
+	
 	main->Render();
 	foe->Render();
 	efac->Render();
