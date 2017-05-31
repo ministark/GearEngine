@@ -89,8 +89,8 @@ void StateManager::Render()
 		else
 			break;
 	}
-	auto ite1 = tobeRender.begin();
-	while (ite1 != tobeRender.end()) {
+	auto ite1 = tobeRender.rbegin();
+	while (ite1 != tobeRender.rend()) {
 		(*ite1)->Render(); ite1++;
 	}
 	geareng->CleanRender();
