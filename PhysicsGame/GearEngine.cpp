@@ -61,12 +61,12 @@ void GearEngine::CleanRender()
 	std::list<GearSprite*>::iterator ite1 = sprites->begin();
 	while (ite1 != sprites->end()) {
 		if ((*ite1)->markForDeletion) { delete (*ite1); ite1 = sprites->erase(ite1); }
-		else ite1++;
+		else ++ite1;
 	}
 	std::list<GearPhysicsBody*>::iterator ite2 = pbodies->begin();
 	while (ite2 != pbodies->end()) {
 		if ((*ite2)->markForDeletion) { delete (*ite2); ite2 = pbodies->erase(ite2); }
-		else ite2++;
+		else ++ite2;
 	}
 
 }
