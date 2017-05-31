@@ -17,7 +17,9 @@ PauseState::PauseState(GearEngine* eng)
 
 void PauseState::Init()
 {
-	pauseimg = geareng->CreateSprite(SCREEN_WIDTH, SCREEN_HEIGHT, "Image/Background/Smoke.png");
+	pauseimg = geareng->CreateSprite(653, 191, "Image/Background/Pause2.png");
+	clouds = geareng->CreateSprite(SCREEN_WIDTH, SCREEN_HEIGHT, "Image/Background/Smoke.png");
+
 }
 
 PauseState::~PauseState()
@@ -68,4 +70,5 @@ void PauseState::Update()
 void PauseState::Render()
 {
 	pauseimg->Render(0,0);
+	clouds->Render(0, 0);
 }
