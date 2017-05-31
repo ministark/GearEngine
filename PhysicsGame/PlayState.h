@@ -1,5 +1,5 @@
 #include "State.h"
-#include "StateManager.h"
+#include "PauseState.h"
 #include "Constants.h"
 #include "Walls.h"
 #include "Protagonist.h"

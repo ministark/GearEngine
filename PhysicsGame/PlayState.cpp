@@ -81,7 +81,8 @@ void PlayState::InputHandle(MSG* msg)
 		case VK_SHIFT:
 			key_shift = 1;	break;
 		case VK_ESCAPE:
-			PostQuitMessage(0);  break;
+			StateManager::GetInstance(geareng)->AddState(PauseState::GetInstance(geareng));
+			break;
 		}
 		break;
 	case WM_KEYUP:
