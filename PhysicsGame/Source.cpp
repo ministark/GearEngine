@@ -1,7 +1,6 @@
 // include the basic windows header files and the Direct3D header file
 #include <windows.h>
 #include <windowsx.h>
-#include "GameWorld.h"
 #include "PlayState.h"
 #include <ctime>
 
