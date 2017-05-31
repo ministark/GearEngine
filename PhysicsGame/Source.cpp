@@ -7,23 +7,17 @@
 
 // the WindowProc function prototype
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+	if (message == WM_CLOSE) {
+		PostQuitMessage(0);
+	}
+	
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
-
-
-bool FrameFunc() {
-
-	return true;
-}
-
-bool RenderFunc() {
-
-	return true;
-}
 // the entry point for any Windows program
 int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nCmdShow)
 {
+	srand((int)time(0));
 	HWND hWnd;
 	WNDCLASSEX wc;
 
@@ -42,25 +36,22 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 		WS_OVERLAPPEDWINDOW, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT,
 		NULL, NULL, hInstance, NULL);
 	ShowWindow(hWnd, nCmdShow);
+	// Game Engine
 	GearEngine *reng = new GearEngine();
-
-	// set up and initialize Direct3D
-	srand((int)time(0));
-	reng->initD3D(hWnd,FrameFunc,RenderFunc);
+	reng->initD3D(hWnd,NULL,NULL);
+	
+	// State manager
 	Gear::StateManager *sm = Gear::StateManager::GetInstance(reng);
+	
+	//Add the Scene
 	sm->AddState(PlayState::GetInstance(reng));
-	while (!sm->RunScene())
-	{
-		
-		//reng->render_frame(PHYSICS_DT);
-	}
-
-	// clean up DirectX and COM
+	
+	// Game Loop
+	while (!sm->RunScene()) {}
+	
 	reng->cleanD3D();
 
 }
 
-
-// this is the main message handler for the program
 
 	

@@ -31,6 +31,7 @@ void StateManager::Inputhandle()
 		auto ite = states.rbegin();
 		while (ite != states.rend()) {
 			(*ite)->InputHandle(&msg);
+			if (states.empty()) return;
 			if ((*ite)->InputCallBack)
 				ite++;
 			else
@@ -41,6 +42,7 @@ void StateManager::Inputhandle()
 
 void Gear::StateManager::Update()
 {
+	if (states.empty()) return;
 	auto ite = states.rbegin();
 	while ( ite != states.rend()) {
 		(*ite)->Update(); 
@@ -54,9 +56,10 @@ void Gear::StateManager::Update()
 bool Gear::StateManager::RunScene()
 {
 	if (states.empty()) return true;
-
 	Inputhandle(); 	
+
 	Update();
+	
 	Render();
 
 	return false;
@@ -73,6 +76,7 @@ StateManager * Gear::StateManager::GetInstance( GearEngine* eng)
 
 void StateManager::Render()
 {
+	if (states.empty()) return;
 	geareng->InitRender();
 	auto ite = states.rbegin();
 	while ( ite != states.rend()) {
