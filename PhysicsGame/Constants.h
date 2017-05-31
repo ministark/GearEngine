@@ -41,6 +41,6 @@
 #define BULLET_E			1.0f	//Restitution of the Bullets		
 #define BULLET_SPEED		0.5f	//Factor to control speed
 #define BULLET_DAMAGE		20	
-#define BULLET_REPOS		0.1f	//Respostions toward Mouse
+#define BULLET_REPOS		0.01f	//Respostions toward Mouse
 
 #pragma once
