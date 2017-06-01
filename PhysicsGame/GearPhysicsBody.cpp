@@ -33,7 +33,15 @@ GearPhysicsBody::GearPhysicsBody()
 	 ObjectType = obj;
  }
 
-void GearPhysicsBody::Render() { if (image != NULL) image->Render(x, y); }
+void GearPhysicsBody::Render() { 
+	if (image != NULL) image->Render(x, y);
+}
+
+// Internally calls the sprites Render function
+void GearPhysicsBody::RenderX(float rx, float ry, float rz, float scale){
+	if (image != NULL) image->RenderX(x, y, rx, ry, rz, scale);
+}
+
 
 void GearPhysicsBody::Remove()
 {

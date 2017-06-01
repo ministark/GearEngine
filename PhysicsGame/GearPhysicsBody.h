@@ -20,6 +20,8 @@ public:
 	void SetObjectType(int);
 	void SetImage(GearSprite*);
 	void Render();
+	void RenderX(float rx, float ry, float rz, float scale);
+
 	void Remove();
 	float Collide(GearPhysicsBody*);
 	~GearPhysicsBody();

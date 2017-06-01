@@ -41,7 +41,7 @@ GearSprite::GearSprite(LPDIRECT3DDEVICE9 D3ddev, float w, float h, std::string i
 }
 
 
-// Results Translation of the Sprite by X, Y
+// Results Translation of the Sprite by X, Y and Draws it on the Back Buffer
 void GearSprite::Render(float x, float y)
 {
 	d3ddev->SetFVF(CUSTOMFVF);
