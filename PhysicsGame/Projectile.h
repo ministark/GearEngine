@@ -11,5 +11,7 @@ public:
 	void Render();
 	bool outOfScreen();
 	~Projectile();
+private:
+	float rot = 0;
 };
 

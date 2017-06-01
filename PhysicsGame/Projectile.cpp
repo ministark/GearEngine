@@ -37,7 +37,7 @@ Projectile::Projectile(GearEngine* geareng, float rx, float ry, float rvx, float
 
 void Projectile::Render()
 {
-	static float rot = 0; rot -= (body->vx >0 ? 1:-1)*(fabs(body->vx)+fabs(body->vy))*BULLET_ANIMATION;
+	rot -= (body->vx >0 ? 1:-1)*(fabs(body->vx)+fabs(body->vy))*BULLET_ANIMATION;
 	body->RenderX(0,0,rot,1);
 }
 
