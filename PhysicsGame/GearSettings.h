@@ -9,8 +9,8 @@
 #pragma once
 
 // Screen Settings
-	#define SCREEN_WIDTH		1600
-	#define SCREEN_HEIGHT		1000
+	#define SCREEN_WIDTH		1920
+	#define SCREEN_HEIGHT		1080
 
 // Codes For X and Y
 	#define PHYSICSX			1

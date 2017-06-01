@@ -42,5 +42,6 @@
 #define BULLET_SPEED		0.5f	//Factor to control speed
 #define BULLET_DAMAGE		20	
 #define BULLET_REPOS		0.01f	//Respostions toward Mouse
+#define BULLET_ANIMATION	0.001	//Speed of Rotation
 
 #pragma once
