@@ -21,6 +21,15 @@ void PlayState::Init()
 	background = geareng->CreateSprite(SCREEN_WIDTH, SCREEN_HEIGHT, "Image/Background/LensFlare2.png");
 	sun = geareng->CreateSprite(518, 659, "Image/Background/Sun.png");
 
+	black = geareng->CreateSprite(100, 600, "Image/Background/Black.png");
+	left = geareng->CreatePhysicsBody(400, -200, 0, 0, 100, 600, 1, 0, PHYSICS_AWAKE);
+	left->SetImage(black);
+	right = geareng->CreatePhysicsBody(-400, -200, 0, 0, 100, 600, 1, 0, PHYSICS_AWAKE);
+	right->SetImage(black);
+
+
+
+
 	edges = new Walls(geareng);
 	//Set the Player and AI
 	main = new Protagonist(geareng);
@@ -123,14 +132,13 @@ void PlayState::Update()
 	if (main->ishuman) {
 		if (key_a) { main->addvx(PLAYER_SENSITIVITY); }
 		if (key_d) { main->addvx(-PLAYER_SENSITIVITY); }
-		if (key_w && !pkey_w && fabs(main->body->vy) < VELOCITY_LOW) { main->addvy(PLAYER_JUMP); } //Add grounded condition
-																								   //	Bullet Firing
+		if (key_w && !pkey_w && fabs(main->body->vy) < VELOCITY_LOW) { main->addvy(PLAYER_JUMP); } 
 		if (mouse_l && !pmouse_l) {
 			stars.push_back(new Projectile(geareng, main->body->x, main->body->y, (mouse_x - main->body->x)*BULLET_SPEED, (mouse_y - main->body->y)*BULLET_SPEED));
 			main->addvx(-(mouse_x - main->body->x)*BULLET_SPEED*PLAYER_RECOIL);
 			main->addvy(-(mouse_y - main->body->y)*BULLET_SPEED*PLAYER_RECOIL);
-		} /*main->addStar(main->body->x, main->body->y, (gw->mx - main->body->x)*BULLET_SPEED, (gw->my - main->body->y)*BULLET_SPEED);*/
-		//Velocity Restriction
+		} 
+		//Velocity Restriction of moving
 		 (main->body->vx > 0) ? main->body->vx = min(PLAYER_SPEEDX, main->body->vx) : main->body->vx = max(-PLAYER_SPEEDX, main->body->vx);
 		 (main->body->vy > 0) ? main->body->vy = min(PLAYER_SPEEDY, main->body->vy) : main->body->vy = max(-PLAYER_SPEEDY, main->body->vy);
 	}
@@ -139,9 +147,11 @@ void PlayState::Update()
 		if (key_d) { main->addvx(-PLAYER_FLY); }
 		if (key_w) { main->addvy(PLAYER_FLY); }
 		if (key_s) { main->addvy(-PLAYER_FLY); }
+
 		//Disabling gravity for the Skeleton
 		main->addvy(PHYSICS_GRAVITY);
-		//Velocity Restriction
+
+		//Velocity Restriction of Flying
 		(main->body->vx > 0) ? main->body->vx = min(PLAYER_FLYX, main->body->vx) : main->body->vx = max(-PLAYER_FLYX, main->body->vx);
 		(main->body->vy > 0) ? main->body->vy = min(PLAYER_FLYY, main->body->vy) : main->body->vy = max(-PLAYER_FLYY, main->body->vy);
 	}
@@ -152,7 +162,6 @@ void PlayState::Update()
 		(*ite)->body->vx += (mouse_x - (*ite)->body->x)*BULLET_REPOS;
 		(*ite)->body->vy += (mouse_y - (*ite)->body->y)*BULLET_REPOS;
 	}
-
 
 	//Set the previous value
 	pkey_w = key_w; pkey_shift = key_shift; pmouse_l = mouse_l;
@@ -166,13 +175,15 @@ void PlayState::Render()
 	background->Render(0,0);
 	//sun->Render(350 + (main->body->x)*0.1, 100);
 	
+
+	left->Render();
+	right->Render();
 	main->Render();
 	foe->Render();
 	efac->Render();
 	for (std::list<Projectile*>::iterator ite = stars.begin(); ite != stars.end(); ite++) {
 		(*ite)->Render();
 	}
-
 
 	//Remove stars
 	std::list<Projectile*>::iterator ite = stars.begin();

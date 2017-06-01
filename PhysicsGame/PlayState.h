@@ -33,7 +33,8 @@ public:
 	float mouse_x, mouse_y;
 
 private:
-	GearSprite  *background, *sun;
+	GearSprite  *background, *sun, *black;
+	GearPhysicsBody *left, *right;
 	Walls *edges;
 	Protagonist *main;
 	Foe *foe;
