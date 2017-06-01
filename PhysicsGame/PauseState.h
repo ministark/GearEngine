@@ -18,7 +18,7 @@ public:
 	~PauseState();
 	static PauseState* GetInstance(GearEngine*);
 private:
-	GearSprite *pauseimg, *clouds;
+	GearSprite *pauseimg;
 	GearEngine *geareng;
 	PauseState(GearEngine*);
 	static PauseState* inst;

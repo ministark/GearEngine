@@ -163,7 +163,7 @@ void PlayState::Update()
 
 void PlayState::Render()
 {
-	background->Render(0,0);
+	//background->Render(0,0);
 	sun->Render(350, 100);
 	
 	main->Render();
