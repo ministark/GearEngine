@@ -17,7 +17,7 @@ PauseState::PauseState(GearEngine* eng)
 
 void PauseState::Init()
 {
-	pauseimg = geareng->CreateSprite(653, 191, "Image/Background/Pause2.png");
+	pauseimg = geareng->CreateSprite(653, 191, "Image/Buttons/Pause3.png");
 
 }
 

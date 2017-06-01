@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Foe.cpp" />
     <ClCompile Include="FoeFactory.cpp" />
+    <ClCompile Include="GameButton.cpp" />
     <ClCompile Include="GearDistanceJoint.cpp" />
     <ClCompile Include="GearDistanceJointX.cpp" />
     <ClCompile Include="GearDistanceJointY.cpp" />
@@ -28,6 +30,7 @@
     <ClCompile Include="GearPhysicsBody.cpp" />
     <ClCompile Include="GearEngine.cpp" />
     <ClCompile Include="GearRopeJoint.cpp" />
+    <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -39,9 +42,11 @@
     <ClCompile Include="Walls.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Foe.h" />
     <ClInclude Include="FoeFactory.h" />
+    <ClInclude Include="GameButton.h" />
     <ClInclude Include="GearDistanceJoint.h" />
     <ClInclude Include="GearDistanceJointX.h" />
     <ClInclude Include="GearDistanceJointY.h" />
@@ -51,6 +56,7 @@
     <ClInclude Include="GearSettings.h" />
     <ClInclude Include="GearEngine.h" />
     <ClInclude Include="GearSprites.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="Projectile.h" />

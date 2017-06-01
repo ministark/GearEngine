@@ -18,7 +18,7 @@ PlayState::PlayState(GearEngine* eng)
 void PlayState::Init()
 {
 	//Set the enviornment
-	background = geareng->CreateSprite(SCREEN_WIDTH, SCREEN_HEIGHT, "Image/Background/PlayBackground.png");
+	background = geareng->CreateSprite(SCREEN_WIDTH, SCREEN_HEIGHT, "Image/Background/LensFlare2.png");
 	sun = geareng->CreateSprite(518, 659, "Image/Background/Sun.png");
 
 	edges = new Walls(geareng);
@@ -163,8 +163,8 @@ void PlayState::Update()
 
 void PlayState::Render()
 {
-	//background->Render(0,0);
-	sun->Render(350, 100);
+	background->Render(0,0);
+	//sun->Render(350 + (main->body->x)*0.1, 100);
 	
 	main->Render();
 	foe->Render();

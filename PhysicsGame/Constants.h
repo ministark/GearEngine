@@ -43,5 +43,7 @@
 #define BULLET_DAMAGE		20	
 #define BULLET_REPOS		0.01f	//Respostions toward Mouse
 #define BULLET_ANIMATION	0.001	//Speed of Rotation
+/*GUI*/
+#define ONFOCUS_SCALE		1.5f	//Scale the UI element by factor of 1.5
 
 #pragma once

@@ -51,6 +51,12 @@
     <Filter Include="Header Files\Game\GameStates">
       <UniqueIdentifier>{5902ea1a-e54a-4a43-a314-1e388eae38df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\UI">
+      <UniqueIdentifier>{35b7cc66-531c-4c4e-8a4e-9c72756dabeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\UI">
+      <UniqueIdentifier>{0cd7c7e2-4191-424b-981b-d79bcf65f026}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GearSprites.cpp">
@@ -106,6 +112,15 @@
     </ClCompile>
     <ClCompile Include="PauseState.cpp">
       <Filter>Source Files\Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameButton.cpp">
+      <Filter>Source Files\Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Game\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +180,15 @@
     </ClInclude>
     <ClInclude Include="PlayState.h">
       <Filter>Header Files\Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameButton.h">
+      <Filter>Header Files\Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Header Files\Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Game\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

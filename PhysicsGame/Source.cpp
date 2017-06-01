@@ -1,7 +1,7 @@
 // include the basic windows header files and the Direct3D header file
 #include <windows.h>
 #include <windowsx.h>
-#include "PlayState.h"
+#include "MenuState.h"
 #include <ctime>
 
 // the WindowProc function prototype
@@ -43,7 +43,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 	Gear::StateManager *sm = Gear::StateManager::GetInstance(reng);
 	
 	//Add the Scene
-	sm->AddState(PlayState::GetInstance(reng));
+	sm->AddState(MenuState::GetInstance(reng));
 	
 	// Game Loop
 	while (!sm->RunScene()) {}
