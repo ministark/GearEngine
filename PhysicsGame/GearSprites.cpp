@@ -40,6 +40,8 @@ GearSprite::GearSprite(LPDIRECT3DDEVICE9 D3ddev, float w, float h, std::string i
 	d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 }
 
+
+// Results Translation of the Sprite by X, Y
 void GearSprite::Render(float x, float y)
 {
 	d3ddev->SetFVF(CUSTOMFVF);
@@ -48,13 +50,8 @@ void GearSprite::Render(float x, float y)
 	D3DXMATRIX matTransform;
 	D3DXMatrixTranslation(&matTransform, x, y, 0);
 
-	D3DXMATRIX matRotateY;    // a matrix to store the rotation information
-	static float index = 0.0f; index += 0.0f;    // an ever-increasing float value
-	// build a matrix to rotate the model based on the increasing float value
-	D3DXMatrixRotationY(&matRotateY, index);
-
 	// tell Direct3D about our matrix
-	d3ddev->SetTransform(D3DTS_WORLD, &(matRotateY*matTransform));
+	d3ddev->SetTransform(D3DTS_WORLD, &(matTransform));
 	d3ddev->SetStreamSource(0, v_buffer, 0, sizeof(CUSTOMVERTEX));
 	d3ddev->SetIndices(i_buffer);
 
@@ -63,6 +60,37 @@ void GearSprite::Render(float x, float y)
 	// copy the vertex buffer to the back buffer
 	d3ddev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
 
+}
+
+// Results in Scaling in all direction by factor of scale
+//then Rotation in order X, Y, Z then Translation of the Sprite by X, Y
+void GearSprite::RenderX(float x, float y, float rx, float ry, float rz, float scale)
+{
+	d3ddev->SetFVF(CUSTOMFVF);
+
+	// Transforming the sprite
+	D3DXMATRIX matTransform;
+	D3DXMatrixTranslation(&matTransform, x, y, 0);
+
+	D3DXMATRIX matRotateX, matRotateY, matRotateZ;    // a matrix to store the rotation information
+	// build a matrix to rotate the model based on the increasing float value
+	D3DXMatrixRotationX(&matRotateX, rx);
+	D3DXMatrixRotationY(&matRotateY, ry);
+	D3DXMatrixRotationZ(&matRotateZ, rz);
+
+	D3DXMATRIX matScale;
+	D3DXMatrixScaling(&matScale, scale, scale, 1.0f);
+
+
+	// tell Direct3D about our matrix
+	d3ddev->SetTransform(D3DTS_WORLD, &(matTransform*matRotateZ*matRotateY*matRotateX*matScale));
+	d3ddev->SetStreamSource(0, v_buffer, 0, sizeof(CUSTOMVERTEX));
+	d3ddev->SetIndices(i_buffer);
+
+	// Setting Texture
+	d3ddev->SetTexture(0, g_texture);
+	// copy the vertex buffer to the back buffer
+	d3ddev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
 }
 
 void GearSprite::Clean()

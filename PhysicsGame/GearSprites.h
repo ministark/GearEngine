@@ -23,6 +23,7 @@ public:
 	IDirect3DTexture9 *g_texture = NULL;
 	GearSprite(LPDIRECT3DDEVICE9,float,float,std::string);
 	void Render(float, float);
+	void RenderX(float x, float y, float rx, float ry, float rz, float scale);
 	void Clean();
 	~GearSprite();
 };
