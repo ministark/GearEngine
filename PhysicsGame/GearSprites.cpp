@@ -83,7 +83,7 @@ void GearSprite::RenderX(float x, float y, float rx, float ry, float rz, float s
 
 
 	// tell Direct3D about our matrix
-	d3ddev->SetTransform(D3DTS_WORLD, &(matTransform*matRotateZ*matRotateY*matRotateX*matScale));
+	d3ddev->SetTransform(D3DTS_WORLD, &(matScale*matRotateX*matRotateY*matRotateZ*matTransform));
 	d3ddev->SetStreamSource(0, v_buffer, 0, sizeof(CUSTOMVERTEX));
 	d3ddev->SetIndices(i_buffer);
 
