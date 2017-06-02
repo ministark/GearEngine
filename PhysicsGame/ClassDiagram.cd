@@ -1,10 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="PlayState" Collapsed="true">
-    <Position X="0.5" Y="4.75" Width="1.5" />
+  <Class Name="CityMap" Collapsed="true">
+    <Position X="3.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAUwAABgAIAEAAQAAEAhCAIABAAABAIIAhACAEghABQ=</HashCode>
-      <FileName>PlayState.h</FileName>
+      <HashCode>hAAABAAAMIBABAAAAAAAAIAAAAAAARAAABAKABIAJAA=</HashCode>
+      <FileName>CityMap.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameMap" Collapsed="true">
+    <Position X="3.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAQAABAAAAAAAAAAAAAAAAAAAABQCAAAAAAA=</HashCode>
+      <FileName>GameMap.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GearEngine" Collapsed="true">
@@ -17,14 +24,14 @@
   <Class Name="GearPhysicsBody" Collapsed="true">
     <Position X="10" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>MAAAAAACAAAAAARCQgAABAUAERAAAAAGINBgAAABAAA=</HashCode>
+      <HashCode>MAAAAAACAAAAAARCUgAABAUAERAAAAAGINBgAAABAAA=</HashCode>
       <FileName>GearPhysicsBody.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GearSprite" Collapsed="true">
     <Position X="11.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAIAAAAAAAQAQAAABAAAAQAQAAAAABIAAAAAwAA=</HashCode>
+      <HashCode>AAAAQAIAAAAAAAQAUAAABAAAAQAQAAAAABIAAAAAwAA=</HashCode>
       <FileName>GearSprites.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -80,7 +87,7 @@
   <Class Name="Projectile" Collapsed="true">
     <Position X="13.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAEAAAAgAgAAAAAQABAAAIABAAAAAAIAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAEAAAAgAgAAACAQABAAAIABAAAAAAIAA=</HashCode>
       <FileName>Projectile.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -98,8 +105,43 @@
       <FileName>Walls.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="MenuState" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQhEABAAQAAAAAAAgAAQAAABAAAIAIAABACAEgBAAA=</HashCode>
+      <FileName>MenuState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseState" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASgAAAAAQAAAAAAAAAAEAAABAAAAgIAABACAEgBAAA=</HashCode>
+      <FileName>PauseState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayState" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUwEABgAAAEAAQAAEAhCAIABAAABAIIAhACAEghABQ=</HashCode>
+      <FileName>PlayState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Button" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAABAAAAEAAAA=</HashCode>
+      <FileName>Button.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameButton" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAgAAAAAEAQAQIAAAEAAAAAAAAAAABBgQAAAAAA=</HashCode>
+      <FileName>GameButton.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Gear::State" Collapsed="true">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+    <Position X="3" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQgAAAAAQAAAAAAAAAAAAAAAAAABAAAARACBFgBIAA=</HashCode>
       <FileName>State.h</FileName>
@@ -108,7 +150,7 @@
   <Class Name="Gear::StateManager" Collapsed="true">
     <Position X="11.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAQAAAABAAgAAAAAABAEAAAIEABQAAEABCAE=</HashCode>
+      <HashCode>AAQAAAAAAQAAAABAAgAAAAAABAEAAAIEABQAAECBCAE=</HashCode>
       <FileName>StateManager.h</FileName>
     </TypeIdentifier>
   </Class>
