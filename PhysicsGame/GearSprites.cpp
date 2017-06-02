@@ -64,7 +64,7 @@ void GearSprite::Render(float x, float y)
 
 // Results in Scaling in all direction by factor of scale
 //then Rotation in order X, Y, Z then Translation of the Sprite by X, Y
-void GearSprite::RenderX(float x, float y, float rx, float ry, float rz, float scale)
+void GearSprite::RenderX(float x, float y, float rx, float ry, float rz, float scalex, float scaley)
 {
 	d3ddev->SetFVF(CUSTOMFVF);
 
@@ -79,7 +79,7 @@ void GearSprite::RenderX(float x, float y, float rx, float ry, float rz, float s
 	D3DXMatrixRotationZ(&matRotateZ, rz);
 
 	D3DXMATRIX matScale;
-	D3DXMatrixScaling(&matScale, scale, scale, 1.0f);
+	D3DXMatrixScaling(&matScale, scalex, scaley, 1.0f);
 
 
 	// tell Direct3D about our matrix

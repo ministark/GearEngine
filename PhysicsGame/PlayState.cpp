@@ -18,19 +18,9 @@ PlayState::PlayState(GearEngine* eng)
 void PlayState::Init()
 {
 	//Set the enviornment
-	background = geareng->CreateSprite(SCREEN_WIDTH, SCREEN_HEIGHT, "Image/Background/LensFlare2.png");
-	sun = geareng->CreateSprite(518, 659, "Image/Background/Sun.png");
+	map = new CityMap(geareng);
+	map->Init();
 
-	black = geareng->CreateSprite(100, 600, "Image/Background/Black.png");
-	left = geareng->CreatePhysicsBody(400, -200, 0, 0, 100, 600, 1, 0, PHYSICS_AWAKE);
-	left->SetImage(black);
-	right = geareng->CreatePhysicsBody(-400, -200, 0, 0, 100, 600, 1, 0, PHYSICS_AWAKE);
-	right->SetImage(black);
-
-
-
-
-	edges = new Walls(geareng);
 	//Set the Player and AI
 	main = new Protagonist(geareng);
 	foe = new Foe(geareng);
@@ -45,9 +35,7 @@ void PlayState::Init()
 
 void PlayState::Cleanup()
 {
-	background->Remove();
-	sun->Remove();
-	delete edges;
+	delete map;
 	delete main;
 	delete foe;
 	delete efac;
@@ -172,12 +160,7 @@ void PlayState::Update()
 
 void PlayState::Render()
 {
-	background->Render(0,0);
-	//sun->Render(350 + (main->body->x)*0.1, 100);
-	
-
-	left->Render();
-	right->Render();
+	map->Render();
 	main->Render();
 	foe->Render();
 	efac->Render();
@@ -217,5 +200,6 @@ void PlayState::ResetInstance()
 
 PlayState::~PlayState()
 {
+	Cleanup();
 }
 

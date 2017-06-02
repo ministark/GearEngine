@@ -38,8 +38,8 @@ void GearPhysicsBody::Render() {
 }
 
 // Internally calls the sprites Render function
-void GearPhysicsBody::RenderX(float rx, float ry, float rz, float scale){
-	if (image != NULL) image->RenderX(x, y, rx, ry, rz, scale);
+void GearPhysicsBody::RenderX(float rx, float ry, float rz, float scalex, float scaley){
+	if (image != NULL) image->RenderX(x, y, rx, ry, rz, scalex, scaley);
 }
 
 

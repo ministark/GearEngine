@@ -57,6 +57,9 @@
     <Filter Include="Header Files\Game\UI">
       <UniqueIdentifier>{0cd7c7e2-4191-424b-981b-d79bcf65f026}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\GameMaps">
+      <UniqueIdentifier>{f980fc99-2132-4d10-928e-96458fc44121}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GearSprites.cpp">
@@ -116,11 +119,17 @@
     <ClCompile Include="GameButton.cpp">
       <Filter>Source Files\Game\UI</Filter>
     </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap.cpp">
+      <Filter>Source Files\Game\GameMaps</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Source Files\Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="CityMap.cpp">
+      <Filter>Source Files\Game\GameMaps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +198,12 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Header Files\Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CityMap.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

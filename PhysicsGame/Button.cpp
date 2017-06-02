@@ -34,7 +34,7 @@ bool Button::InputListener(MSG *msg)
 
 void Button::Render()
 {
-	(onFocus) ? himg->RenderX(x,y,0,0,0,ONFOCUS_SCALE): img->Render(x, y);
+	(onFocus) ? himg->RenderX(x,y,0,0,0,ONFOCUS_SCALE,  ONFOCUS_SCALE): img->Render(x, y);
 }
 
 

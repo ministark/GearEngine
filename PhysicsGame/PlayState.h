@@ -1,7 +1,6 @@
 #include "State.h"
 #include "PauseState.h"
-#include "Constants.h"
-#include "Walls.h"
+#include "CityMap.h"
 #include "Protagonist.h"
 #include "FoeFactory.h"
 #include "Projectile.h"
@@ -33,9 +32,7 @@ public:
 	float mouse_x, mouse_y;
 
 private:
-	GearSprite  *background, *sun, *black;
-	GearPhysicsBody *left, *right;
-	Walls *edges;
+	GameMap *map;
 	Protagonist *main;
 	Foe *foe;
 	FoeFactory *efac;
