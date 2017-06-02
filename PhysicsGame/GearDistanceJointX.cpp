@@ -18,9 +18,13 @@ void GearDistanceJointX::ResolveConstraint()
 {
 	float dx = fabs(body2->x - body1->x) - Distance;
 	float force =  Stiffness*dx  + (dx > 0 ? -1 : 1)*Dampning*(fabs(body1->vx - body2->vx));
-	body1->vx += (body1->x < body2->x ? 1 : -1)*force*body1->invmass*PHYSICS_DT;
-	body2->vx += (body2->x < body1->x ? 1 : -1)*force*body2->invmass*PHYSICS_DT;
-	//yet to use dampnes;
+	if (body1->state != PHYSICS_STATIC) {
+		body1->vx += (body1->x < body2->x ? 1 : -1)*force*body1->invmass*PHYSICS_DT;
+	}
+	if (body2->state != PHYSICS_STATIC) {
+		body2->vx += (body2->x < body1->x ? 1 : -1)*force*body2->invmass*PHYSICS_DT;
+	}
+		//yet to use dampnes;
 	
 }
 
