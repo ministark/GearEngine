@@ -31,6 +31,7 @@
     <ClCompile Include="GearJoint.cpp" />
     <ClCompile Include="GearPhysicsBody.cpp" />
     <ClCompile Include="GearEngine.cpp" />
+    <ClCompile Include="GearQuadTree.cpp" />
     <ClCompile Include="GearRopeJoint.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PauseState.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="GearDistanceJointY.h" />
     <ClInclude Include="GearJoint.h" />
     <ClInclude Include="GearPhysicsBody.h" />
+    <ClInclude Include="GearQuadTree.h" />
     <ClInclude Include="GearRopeJoint.h" />
     <ClInclude Include="GearSettings.h" />
     <ClInclude Include="GearEngine.h" />

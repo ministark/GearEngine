@@ -131,6 +131,9 @@
     <ClCompile Include="CityMap.cpp">
       <Filter>Source Files\Game\GameMaps</Filter>
     </ClCompile>
+    <ClCompile Include="GearQuadTree.cpp">
+      <Filter>Source Files\GearEngine\EngineObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GearSettings.h">
@@ -204,6 +207,9 @@
     </ClInclude>
     <ClInclude Include="CityMap.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GearQuadTree.h">
+      <Filter>Header Files\GearEngine\EngineObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
