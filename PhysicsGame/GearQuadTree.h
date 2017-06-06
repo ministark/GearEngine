@@ -23,6 +23,7 @@ namespace Gear {
 		GearQuadTree(int, float, float, float, float);
 		void clear();
 		void insert(GearPhysicsBody *);
+		std::vector<GearPhysicsBody*> solve();
 		void setMaxObjects(int);
 		void setMaxLevels(int);
 		~GearQuadTree();

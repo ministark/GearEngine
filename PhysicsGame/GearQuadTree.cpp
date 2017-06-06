@@ -45,7 +45,7 @@ Gear::GearQuadTree::GearQuadTree(int level, float xmin, float ymin, float xmax, 
 
 void Gear::GearQuadTree::clear()
 {
-	for (size_t i = 0; i < 4; i++) {
+	for (size_t i = 0; i < 4; ++i) {
 		delete nodes[i]; nodes[i] = NULL;
 	}
 	objects.clear();
@@ -81,6 +81,50 @@ void Gear::GearQuadTree::insert(GearPhysicsBody * body)
 	}
 }
 
+std::vector<GearPhysicsBody*> Gear::GearQuadTree::solve()
+{	
+	std::vector<GearPhysicsBody*> scope;
+	if (nodes[0] != NULL) {
+		for (size_t i = 0; i < 4; i++) {
+			std::vector<GearPhysicsBody*> temp = nodes[i]->solve();
+			scope.insert(scope.end(), temp.begin(), temp.end());
+		}
+	}
+	scope.insert(scope.end(), objects.begin(), objects.end());
+	
+	for (auto ite = objects.begin(); ite != objects.end(); ++ite) {
+		for (auto nite = scope.begin(); nite != scope.end(); ++nite) {
+			if ((*ite) != (*nite)) {
+				if ((*ite)->state == PHYSICS_AWAKE || (*nite)->state == PHYSICS_AWAKE) {
+					float normal = (*ite)->Collide((*nite));
+					float min_e = min((*ite)->e, (*nite)->e);
+					//Resolve the collisions
+					if (normal > 0 && ((*nite)->vx - (*ite)->vx)*((*nite)->x - (*ite)->x) <= 0) {
+						float j = (1.0f + min_e) * ((*nite)->vx - (*ite)->vx); j /= (*nite)->invmass + (*ite)->invmass;
+						(*ite)->vx += j*(*ite)->invmass; (*nite)->vx += (-j)*(*nite)->invmass;
+						float corr = max(normal - PHYSICS_SLOP, 0.0f)*PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass);
+						if ((*ite)->state == PHYSICS_AWAKE) ((*ite)->x) += (((*ite)->x - (*nite)->x) > 0) ? (*ite)->invmass*corr : -(*ite)->invmass*corr;
+						if ((*nite)->state == PHYSICS_AWAKE) ((*nite)->x) += (((*nite)->x - (*ite)->x) > 0) ? (*nite)->invmass*corr : -(*nite)->invmass*corr;
+						if ((*ite)->OnCollision != 0)	 (*ite)->OnCollision((void*)(*ite), (void*)(*nite));
+						if ((*nite)->OnCollision != 0)	(*nite)->OnCollision((void*)(*nite), (void*)(*ite));
+					}
+					else if (normal < 0 && ((*nite)->vy - (*ite)->vy)*((*nite)->y - (*ite)->y) <= 0) {
+						float j = (1.0f + min_e) * ((*nite)->vy - (*ite)->vy); j /= (*nite)->invmass + (*ite)->invmass;
+						(*ite)->vy += j*(*ite)->invmass; (*nite)->vy += (-j)*(*nite)->invmass;
+						float corr = max(-normal - PHYSICS_SLOP, 0.0f)*PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass);
+						if ((*ite)->state == PHYSICS_AWAKE) ((*ite)->y) += (((*ite)->y - (*nite)->y) > 0) ? (*ite)->invmass*corr : -(*ite)->invmass*corr;
+						if ((*nite)->state == PHYSICS_AWAKE) ((*nite)->y) += (((*nite)->y - (*ite)->y) > 0) ? (*nite)->invmass*corr : -(*nite)->invmass*corr;
+						if ((*ite)->OnCollision != 0)	(*ite)->OnCollision((void*)(*ite), (void*)(*nite));
+						if ((*nite)->OnCollision != 0)(*nite)->OnCollision((void*)(*nite), (void*)(*ite));
+					}
+				}
+			}
+		}
+	}
+	return scope;
+}
+
+
 void Gear::GearQuadTree::setMaxObjects(int obj)
 {
 	max_objects = obj;
@@ -94,7 +138,7 @@ void Gear::GearQuadTree::setMaxLevels(int lvl)
 
 GearQuadTree::~GearQuadTree()
 {
-	for (size_t i = 0; i < 4; i++)
+	for (size_t i = 0; i < 4; ++i)
 		delete nodes[i];
 
 }
