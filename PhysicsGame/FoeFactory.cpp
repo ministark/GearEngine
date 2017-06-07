@@ -2,14 +2,35 @@
 
 
 
-FoeFactory::FoeFactory(GearEngine *geareng)
+FoeFactory::FoeFactory(GearEngine *eng, Protagonist *m)
 {
-	
+	geareng = eng;
+	main = m;
+	addEnemy();
+	addEnemy();
+	addEnemy();
+	addEnemy();
+
 }
 
-void FoeFactory::addEnemy(GearEngine* geareng)
+void FoeFactory::addEnemy()
 {
 	enemies.push_back(new Foe(geareng));
+}
+
+void FoeFactory::UpdateAI(std::list<Projectile*> &stars)
+{
+	if (rand() % 10 == 0) {
+		if (!enemies.empty() && main != NULL ) {
+			for (auto ite = enemies.begin(); ite != enemies.end(); ++ite) {
+				if (rand() % 10 == 0)stars.push_back(new Projectile(	geareng, (*ite)->body->x, 
+																		(*ite)->body->y, 
+																		(main->body->x - (*ite)->body->x) * BULLET_SPEED, 
+																		(main->body->y + 100 - (*ite)->body->y) * BULLET_SPEED  
+																	) );
+			}
+		}
+	}
 }
 
 void FoeFactory::Render()
