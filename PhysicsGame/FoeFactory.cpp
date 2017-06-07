@@ -26,7 +26,7 @@ void FoeFactory::UpdateAI(std::list<Projectile*> &stars)
 				if (rand() % 10 == 0)stars.push_back(new Projectile(	geareng, (*ite)->body->x, 
 																		(*ite)->body->y, 
 																		(main->body->x - (*ite)->body->x) * BULLET_SPEED, 
-																		(main->body->y + 100 - (*ite)->body->y) * BULLET_SPEED  
+																		(main->body->y + 200 - (*ite)->body->y) * BULLET_SPEED  
 																	) );
 			}
 		}
