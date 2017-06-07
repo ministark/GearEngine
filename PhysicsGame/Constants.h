@@ -26,6 +26,7 @@
 #define PLAYER_RECOIL		0.1f	//Recoil	
 #define PLAYER_HEALTH		100				
 #define PLAYER_INVMASS		1
+#define PLAYER_JUMP_TIME	10	//Frames after colliding to ground which the character can't jump
 /*ENEMY*/
 //Enemy Max velocity
 #define FOE_SPEEDX			200

@@ -17,29 +17,29 @@ void CityMap::Init()
 
 	leftwall = geareng->CreatePhysicsBody(910, -390, 0, 0, 100, 300, 0, 0, PHYSICS_STATIC);
 	leftwall->SetImage(black);
-	leftwall->SetObjectType(WALL);
+	leftwall->SetObjectType(GROUND);
 	rightwall = geareng->CreatePhysicsBody(210, -390, 0, 0, 100, 300, 0, 0, PHYSICS_STATIC);
 	rightwall->SetImage(black);
-	rightwall->SetObjectType(WALL);
+	rightwall->SetObjectType(GROUND);
 	bottomwall = geareng->CreatePhysicsBody( 0, -510, 0, 0, 1920, 60, 0, 0, PHYSICS_STATIC);
 	bottomwall->SetImage(black);
-	bottomwall->SetObjectType(WALL);
+	bottomwall->SetObjectType(GROUND);
 	midwall = geareng->CreatePhysicsBody(210,0, 0, 0, 1500, 60, 0, 0, PHYSICS_STATIC);
 	midwall->SetImage(black);
-	midwall->SetObjectType(WALL);
+	midwall->SetObjectType(GROUND);
 	lhinge = geareng->CreatePhysicsBody(880, -250, 0, 0, 40, 20, 0, 0, PHYSICS_STATIC);
 	lhinge->SetImage(black);
-	lhinge->SetObjectType(WALL);
+	lhinge->SetObjectType(GROUND);
 	rhinge = geareng->CreatePhysicsBody(240, -250, 0, 0, 40, 20, 0, 0, PHYSICS_STATIC);
 	rhinge->SetImage(black);
-	rhinge->SetObjectType(WALL);
+	rhinge->SetObjectType(GROUND);
 	edges = new Walls(geareng);
 	righthinge = geareng->CreatePhysicsBody(-750, 500, 0, 0, 10, 10, 0, 0, PHYSICS_STATIC);
 	righthinge->SetImage(black);
-	righthinge->SetObjectType(WALL);
+	righthinge->SetObjectType(GROUND);
 	rightplatform = geareng->CreatePhysicsBody(-750, 0, 0, 0, 400, 60, 0.05, 0, PHYSICS_AWAKE);
 	rightplatform->SetImage(black);
-	rightplatform->SetObjectType(WALL);
+	rightplatform->SetObjectType(GROUND);
 	geareng->CreateGearDistanceJointY(righthinge, rightplatform, 500, 10, 0);
 
 
@@ -47,8 +47,8 @@ void CityMap::Init()
 	{
 		bridge.push_back(geareng->CreatePhysicsBody(870 - (i * 30), -230, 0, 0, 20, 10, 10, 0, PHYSICS_AWAKE));
 		bridge.back()->SetImage(black);
-		bridge.back()->SetObjectType(WALL);
-		if (i!= 1) { geareng->CreateGearRopeJoint(bridge[i-2], bridge[i-1], 30, 10, 1); }
+		bridge.back()->SetObjectType(GROUND);
+		if (i!= 1) { geareng->CreateGearRopeJoint(bridge[i-2], bridge[i-1], 25, 20, 1); }
 	}
 	geareng->CreateGearRopeJoint(bridge[0],lhinge, 25, 20, 1);
 	geareng->CreateGearRopeJoint(bridge[19], rhinge, 25, 20, 1);
