@@ -25,9 +25,9 @@ void protOnCollision(void* A,void* B) {
 	}
 	else if (body2->ObjectType == GROUND) {
 		body1->vx > 0 ? body1->vx = max(0, body1->vx - PLAYER_FRICTION) : body1->vx = min(0, body1->vx + PLAYER_FRICTION);
-		main->isGrounded = 1;
-		main->jumptime = 0;
 	}
+	main->isGrounded = 1;
+	main->jumptime = 0;
 }
 
 void Protagonist::addvx(float rvx)
