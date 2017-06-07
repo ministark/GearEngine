@@ -60,6 +60,9 @@
     <Filter Include="Source Files\Game\GameMaps">
       <UniqueIdentifier>{f980fc99-2132-4d10-928e-96458fc44121}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\GameMaps">
+      <UniqueIdentifier>{b739bc21-5208-412e-848e-c7a7a64b69cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GearSprites.cpp">
@@ -202,14 +205,14 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files\Game\UI</Filter>
     </ClInclude>
-    <ClInclude Include="GameMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CityMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GearQuadTree.h">
       <Filter>Header Files\GearEngine\EngineObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="CityMap.h">
+      <Filter>Header Files\Game\GameMaps</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
+      <Filter>Header Files\Game\GameMaps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
