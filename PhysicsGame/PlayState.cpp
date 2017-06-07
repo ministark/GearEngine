@@ -117,10 +117,11 @@ void PlayState::InputHandle(MSG* msg)
 
 void PlayState::Update()
 {
+	main->Update();
 	if (main->ishuman) {
 		if (key_a) { main->addvx(PLAYER_SENSITIVITY); }
 		if (key_d) { main->addvx(-PLAYER_SENSITIVITY); }
-		if (key_w && !pkey_w && fabs(main->body->vy) < VELOCITY_LOW) { main->addvy(PLAYER_JUMP); } 
+		if (key_w && !pkey_w /*&& fabs(main->body->vy) < VELOCITY_LOW*/ && main->isGrounded) { main->addvy(PLAYER_JUMP); } 
 		if (mouse_l && !pmouse_l) {
 			stars.push_back(new Projectile(geareng, main->body->x, main->body->y, (mouse_x - main->body->x)*BULLET_SPEED, (mouse_y - main->body->y)*BULLET_SPEED));
 			main->addvx(-(mouse_x - main->body->x)*BULLET_SPEED*PLAYER_RECOIL);
