@@ -23,12 +23,12 @@ void PlayState::Init()
 
 	//Set the Player and AI
 	main = new Protagonist(geareng);
-	foe = new Foe(geareng);
+	///foe = new Foe(geareng);
 	//geareng->CreateGearDistanceJointX(main->body,foe->body , 200, 10, 0);
 	//geareng->CreateGearDistanceJoint(main->body, foe->body, 200, 10, 0);
 	//geareng->CreateGearRopeJoint(main->body, foe->body, 400, 100, 10);
-	efac = new FoeFactory(geareng);
-	efac->addEnemy(geareng);
+	efac = new FoeFactory(geareng, main);
+	efac->addEnemy();
 	key_w = 0; key_a = 0; key_s = 0; key_d = 0; key_shift = 0; mouse_l = 0; mouse_x = 0; mouse_y = 0;
 	pkey_w = 0; pmouse_l = 0; pkey_shift = 0;
 }
@@ -37,7 +37,7 @@ void PlayState::Cleanup()
 {
 	delete map;
 	delete main;
-	delete foe;
+	//delete foe;
 	delete efac;
 }
 
@@ -147,13 +147,17 @@ void PlayState::Update()
 	if (key_shift && !pkey_shift) main->ishuman = !main->ishuman;
 	
 	//Add force to the bullet
-	for (auto ite = stars.begin(); ite != stars.end(); ++ite) {
-		(*ite)->body->vx += (mouse_x - (*ite)->body->x)*BULLET_REPOS;
-		(*ite)->body->vy += (mouse_y - (*ite)->body->y)*BULLET_REPOS;
+	if (!main->ishuman) {
+		for (auto ite = stars.begin(); ite != stars.end(); ++ite) {
+			(*ite)->body->vx += (mouse_x - (*ite)->body->x)*BULLET_REPOS;
+			(*ite)->body->vy += (mouse_y - (*ite)->body->y)*BULLET_REPOS;
+		}
 	}
-
 	//Set the previous value
 	pkey_w = key_w; pkey_shift = key_shift; pmouse_l = mouse_l;
+
+	//Let the AI Play
+	efac->UpdateAI(stars);
 
 	//Time step could be introduced here
 	geareng->PhysicsEngine(PHYSICS_DT);
@@ -163,7 +167,7 @@ void PlayState::Render()
 {
 	map->Render();
 	main->Render();
-	foe->Render();
+	//foe->Render();
 	efac->Render();
 	for (std::list<Projectile*>::iterator ite = stars.begin(); ite != stars.end(); ite++) {
 		(*ite)->Render();

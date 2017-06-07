@@ -24,7 +24,6 @@ public:
 	~PlayState();
 
 	//Scene Variables
-	
 	std::list<Projectile*> stars;
 
 	//Input Variables
