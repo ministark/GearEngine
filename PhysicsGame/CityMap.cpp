@@ -39,7 +39,7 @@ void CityMap::Init()
 	{
 		bridge.push_back(geareng->CreatePhysicsBody(870 - (i * 30), -230, 0, 0, 20, 10, 10, 0, PHYSICS_AWAKE));
 		bridge.back()->SetImage(black);
-		if (i!= 1) { geareng->CreateGearRopeJoint(bridge[i-2], bridge[i-1], 25, 20, 1); }
+		if (i!= 1) { geareng->CreateGearRopeJoint(bridge[i-2], bridge[i-1], 30, 10, 1); }
 	}
 	geareng->CreateGearRopeJoint(bridge[0],lhinge, 25, 20, 1);
 	geareng->CreateGearRopeJoint(bridge[19], rhinge, 25, 20, 1);
