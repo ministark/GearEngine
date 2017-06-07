@@ -1,5 +1,7 @@
 // Standard Libraries
 #include <vector>
+#include <list>
+
 // Custom Libraries
 #include "GearSettings.h"
 #include "GearSprites.h"
@@ -9,7 +11,7 @@
 #include "GearDistanceJointY.h"
 #include "GearDistanceJoint.h"
 #include "GearRopeJoint.h"
-#include <list>
+#include "GearQuadTree.h"
 #pragma once
 
 
@@ -25,7 +27,7 @@ class GearEngine
 	std::list<GearSprite*> *sprites;
 	std::list<GearPhysicsBody*> *pbodies;
 	std::list<GearJoint*> *joints;
-
+	Gear::GearQuadTree* quad_tree;
 public:
 	GearEngine();
 	void initD3D(HWND hWnd, bool (*)(), bool (*)());    // sets up and initializes Direct3D
@@ -40,6 +42,7 @@ public:
 	GearJoint* CreateGearRopeJoint(GearPhysicsBody*, GearPhysicsBody*, float, float,float);
 
 	void PhysicsEngine(float);
+	void PhysicsEngineX(float); //Faster Implementation
 	void Kinematics(float);
 	void cleanD3D(void);    // closes Direct3D and releases memory
 	~GearEngine();
