@@ -15,11 +15,13 @@ namespace Gear {
 
 		//Utilities
 		float norm();										// Normalise the vector and returns the length of the vector
-		float len(GearVector const &);						// Returns the length of the vector
-		float operator * (GearVector const &);				// Dot product for the vector
-		float dot(GearVector const &);						// Same as Dot product
-		GearVector operator + (GearVector const &);			// Returns the Addition of the two vector 
+		float len(const GearVector  &);						// Returns the length of the vector
+		float operator * (const GearVector  &) const;		// Dot product for the vector
+		float dot(const GearVector  &);						// Same as Dot product
+		GearVector operator + (const GearVector  &) const;	// Returns the Addition of the two vector 
 		void add(GearVector const &);						// Add the second vector to itself
+		GearVector operator - (const GearVector  &) const;
+		void sub(const GearVector  &);
 	};
 
 }

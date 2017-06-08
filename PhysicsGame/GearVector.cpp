@@ -21,7 +21,7 @@ GearVector::~GearVector()
 {
 }
 
-float Gear::GearVector::operator*(GearVector const &vec)
+float Gear::GearVector::operator*(const GearVector  &vec) const
 {	
 	return (_x*vec._x + _y*vec._y);
 }
@@ -31,14 +31,25 @@ float Gear::GearVector::dot(GearVector const &vec)
 	return (_x*vec._x + _y*vec._y);
 }
 
-GearVector Gear::GearVector::operator+(GearVector const &vec)
+GearVector Gear::GearVector::operator+(const GearVector  &vec) const
 {
 	return GearVector(_x+vec._x, _y+vec._y);
 }
 
 void Gear::GearVector::add(GearVector const &vec)
 {
-	_x += vec._x; vec._y;
+	_x += vec._x; _y += vec._y;
+}
+
+GearVector Gear::GearVector::operator-(const GearVector &vec) const
+{
+	return GearVector(_x - vec._x, _y - vec._y);
+}
+
+void Gear::GearVector::sub(const GearVector &vec)
+{
+	_x -= vec._x; _y -= vec._y;
+
 }
 
 float Gear::GearVector::norm()
