@@ -42,13 +42,13 @@ GearSprite::GearSprite(LPDIRECT3DDEVICE9 D3ddev, float w, float h, std::string i
 
 
 // Results Translation of the Sprite by X, Y and Draws it on the Back Buffer
-void GearSprite::Render(float x, float y)
+void GearSprite::Render(Gear::GearVector &vec)
 {
 	d3ddev->SetFVF(CUSTOMFVF);
 
 	// Transforming the sprite
 	D3DXMATRIX matTransform;
-	D3DXMatrixTranslation(&matTransform, x, y, 0);
+	D3DXMatrixTranslation(&matTransform, vec._x, vec._y, 0);
 
 	// tell Direct3D about our matrix
 	d3ddev->SetTransform(D3DTS_WORLD, &(matTransform));
@@ -64,13 +64,13 @@ void GearSprite::Render(float x, float y)
 
 // Results in Scaling in all direction by factor of scale
 //then Rotation in order X, Y, Z then Translation of the Sprite by X, Y
-void GearSprite::RenderX(float x, float y, float rx, float ry, float rz, float scalex, float scaley)
+void GearSprite::RenderX(Gear::GearVector &vec, float rx, float ry, float rz, float scalex, float scaley)
 {
 	d3ddev->SetFVF(CUSTOMFVF);
 
 	// Transforming the sprite
 	D3DXMATRIX matTransform;
-	D3DXMatrixTranslation(&matTransform, x, y, 0);
+	D3DXMatrixTranslation(&matTransform, vec._x, vec._y, 0);
 
 	D3DXMATRIX matRotateX, matRotateY, matRotateZ;    // a matrix to store the rotation information
 	// build a matrix to rotate the model based on the increasing float value

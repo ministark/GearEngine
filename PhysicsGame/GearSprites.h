@@ -1,7 +1,7 @@
 #include <string>
 
 #include "GearSettings.h"
-
+#include "GearVector.h"
 
 
 
@@ -22,8 +22,8 @@ public:
 	LPDIRECT3DINDEXBUFFER9 i_buffer = NULL;
 	IDirect3DTexture9 *g_texture = NULL;
 	GearSprite(LPDIRECT3DDEVICE9,float,float,std::string);
-	void Render(float, float);
-	void RenderX(float x, float y, float rx, float ry, float rz, float scalex, float scaley);
+	void Render(Gear::GearVector &);
+	void RenderX(Gear::GearVector &, float rx, float ry, float rz, float scalex, float scaley);
 	void Clean();
 	~GearSprite();
 };
