@@ -8,7 +8,7 @@ namespace Gear {
 	{
 	private:
 		// Variables
-		float x_min, y_min, x_max, y_max;
+		Gear::GearVector _min, _max;
 		std::vector<GearPhysicsBody*> objects;
 		int max_objects = 10;
 		int max_levels = 10;
@@ -20,7 +20,7 @@ namespace Gear {
 		bool isInside(GearPhysicsBody&);
 	public:
 		GearQuadTree();
-		GearQuadTree(int, float, float, float, float);
+		GearQuadTree(int, const GearVector &, const GearVector &);
 		void clear();
 		void insert(GearPhysicsBody *);
 		std::vector<GearPhysicsBody*> solve();

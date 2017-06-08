@@ -4,12 +4,11 @@ using namespace Gear;
 
 void Gear::GearQuadTree::split()
 {
-	float centerx_ = (x_min + x_max) / 2;
-	float centery_ = (y_min + y_max) / 2;
-	nodes[0] = new GearQuadTree(level_ + 1, centerx_, centery_, x_max, y_max);
-	nodes[1] = new GearQuadTree(level_ + 1, centerx_, y_min, x_max, centery_);
-	nodes[2] = new GearQuadTree(level_ + 1, x_min, y_min, centerx_, centery_);
-	nodes[3] = new GearQuadTree(level_ + 1, x_min, centery_, centerx_, y_max);
+	GearVector center = (_min + _max)*(0.5);
+	nodes[0] = new GearQuadTree(level_ + 1, center, _max);
+	nodes[1] = new GearQuadTree(level_ + 1, GearVector(center._x, _min._y), GearVector(_max._x, center._y) );
+	nodes[2] = new GearQuadTree(level_ + 1, _min, center);
+	nodes[3] = new GearQuadTree(level_ + 1,GearVector( _min._x, center._y), GearVector(center._x, _max._y) );
 }
 
 
@@ -29,7 +28,7 @@ int Gear::GearQuadTree::getIndex(GearPhysicsBody &body)
 
 bool Gear::GearQuadTree::isInside(GearPhysicsBody &body)
 {	
-	if ((body.x + (body.width / 2)) <= x_max && (body.x - (body.width / 2)) >= x_min && (body.y + (body.width / 2)) <= y_max && (body.y + (body.width / 2)) >= y_min)
+	if ((body._pos._x + (body.width / 2)) <= _max._x && (body._pos._x - (body.width / 2)) >= _min._x && (body._pos._y + (body.width / 2)) <= _max._y && (body._pos._y + (body.width / 2)) >= _min._y)
 		return true;
 	return false;
 }
@@ -38,9 +37,9 @@ GearQuadTree::GearQuadTree()
 {
 }
 
-Gear::GearQuadTree::GearQuadTree(int level, float xmin, float ymin, float xmax, float ymax)
+Gear::GearQuadTree::GearQuadTree(int level, const GearVector &vec1, const GearVector &vec2)
 {
-	level_ = level;		x_min = xmin;	y_min = ymin;	x_max = xmax;	y_max = ymax;
+	level_ = level; _min = vec1; _max = vec2;
 }
 
 void Gear::GearQuadTree::clear()
@@ -98,25 +97,31 @@ std::vector<GearPhysicsBody*> Gear::GearQuadTree::solve()
 				if ((*ite)->state == PHYSICS_AWAKE || (*nite)->state == PHYSICS_AWAKE) {
 					float normal = (*ite)->Collide((*nite));
 					float min_e = min((*ite)->e, (*nite)->e);
-					//Resolve the collisions
-					if (normal > 0 && ((*nite)->vx - (*ite)->vx)*((*nite)->x - (*ite)->x) <= 0) {
-						float j = (1.0f + min_e) * ((*nite)->vx - (*ite)->vx); j /= (*nite)->invmass + (*ite)->invmass;
-						(*ite)->vx += j*(*ite)->invmass; (*nite)->vx += (-j)*(*nite)->invmass;
-						float corr = max(normal - PHYSICS_SLOP, 0.0f)*PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass);
-						if ((*ite)->state == PHYSICS_AWAKE) ((*ite)->x) += (((*ite)->x - (*nite)->x) > 0) ? (*ite)->invmass*corr : -(*ite)->invmass*corr;
-						if ((*nite)->state == PHYSICS_AWAKE) ((*nite)->x) += (((*nite)->x - (*ite)->x) > 0) ? (*nite)->invmass*corr : -(*nite)->invmass*corr;
-						if ((*ite)->OnCollision != 0)	 (*ite)->OnCollision((void*)(*ite), (void*)(*nite));
-						if ((*nite)->OnCollision != 0)	(*nite)->OnCollision((void*)(*nite), (void*)(*ite));
+					GearVector impulse = ((*nite)->_vel - (*ite)->_vel)*((1.0f + min_e) / ((*nite)->invmass + (*ite)->invmass));
+					
+					if (normal != 0 && ((*nite)->_vel - (*ite)->_vel)*((*nite)->_pos - (*ite)->_pos) <= 0) {
+
 					}
-					else if (normal < 0 && ((*nite)->vy - (*ite)->vy)*((*nite)->y - (*ite)->y) <= 0) {
-						float j = (1.0f + min_e) * ((*nite)->vy - (*ite)->vy); j /= (*nite)->invmass + (*ite)->invmass;
-						(*ite)->vy += j*(*ite)->invmass; (*nite)->vy += (-j)*(*nite)->invmass;
-						float corr = max(-normal - PHYSICS_SLOP, 0.0f)*PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass);
-						if ((*ite)->state == PHYSICS_AWAKE) ((*ite)->y) += (((*ite)->y - (*nite)->y) > 0) ? (*ite)->invmass*corr : -(*ite)->invmass*corr;
-						if ((*nite)->state == PHYSICS_AWAKE) ((*nite)->y) += (((*nite)->y - (*ite)->y) > 0) ? (*nite)->invmass*corr : -(*nite)->invmass*corr;
-						if ((*ite)->OnCollision != 0)	(*ite)->OnCollision((void*)(*ite), (void*)(*nite));
-						if ((*nite)->OnCollision != 0)(*nite)->OnCollision((void*)(*nite), (void*)(*ite));
-					}
+
+					////Resolve the collisions
+					//if (normal > 0 && ((*nite)->vx - (*ite)->vx)*((*nite)->x - (*ite)->x) <= 0) {
+					//	float j = (1.0f + min_e) * ((*nite)->vx - (*ite)->vx); j /= (*nite)->invmass + (*ite)->invmass;
+					//	(*ite)->vx += j*(*ite)->invmass; (*nite)->vx += (-j)*(*nite)->invmass;
+					//	float corr = max(normal - PHYSICS_SLOP, 0.0f)*PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass);
+					//	if ((*ite)->state == PHYSICS_AWAKE) ((*ite)->x) += (((*ite)->x - (*nite)->x) > 0) ? (*ite)->invmass*corr : -(*ite)->invmass*corr;
+					//	if ((*nite)->state == PHYSICS_AWAKE) ((*nite)->x) += (((*nite)->x - (*ite)->x) > 0) ? (*nite)->invmass*corr : -(*nite)->invmass*corr;
+					//	if ((*ite)->OnCollision != 0)	 (*ite)->OnCollision((void*)(*ite), (void*)(*nite));
+					//	if ((*nite)->OnCollision != 0)	(*nite)->OnCollision((void*)(*nite), (void*)(*ite));
+					//}
+					//else if (normal < 0 && ((*nite)->vy - (*ite)->vy)*((*nite)->y - (*ite)->y) <= 0) {
+					//	float j = (1.0f + min_e) * ((*nite)->vy - (*ite)->vy); j /= (*nite)->invmass + (*ite)->invmass;
+					//	(*ite)->vy += j*(*ite)->invmass; (*nite)->vy += (-j)*(*nite)->invmass;
+					//	float corr = max(-normal - PHYSICS_SLOP, 0.0f)*PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass);
+					//	if ((*ite)->state == PHYSICS_AWAKE) ((*ite)->y) += (((*ite)->y - (*nite)->y) > 0) ? (*ite)->invmass*corr : -(*ite)->invmass*corr;
+					//	if ((*nite)->state == PHYSICS_AWAKE) ((*nite)->y) += (((*nite)->y - (*ite)->y) > 0) ? (*nite)->invmass*corr : -(*nite)->invmass*corr;
+					//	if ((*ite)->OnCollision != 0)	(*ite)->OnCollision((void*)(*ite), (void*)(*nite));
+					//	if ((*nite)->OnCollision != 0)(*nite)->OnCollision((void*)(*nite), (void*)(*ite));
+					//}
 				}
 			}
 		}
