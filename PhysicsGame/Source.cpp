@@ -31,7 +31,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 
 	RegisterClassEx(&wc);
 
-	hWnd = CreateWindowEx(NULL, "WindowClass", "Our Direct3D Program",
+	hWnd = CreateWindowEx(NULL, "WindowClass", "PhysicsGame",
 		WS_OVERLAPPEDWINDOW, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT,
 		NULL, NULL, hInstance, NULL);
 	ShowWindow(hWnd, nCmdShow);
