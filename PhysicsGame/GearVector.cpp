@@ -1,7 +1,6 @@
 #include "GearVector.h"
 using namespace Gear;
 
-
 GearVector::GearVector()
 {
 	_x = 0;	_y = 0;
