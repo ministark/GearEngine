@@ -33,6 +33,7 @@
     <ClCompile Include="GearEngine.cpp" />
     <ClCompile Include="GearQuadTree.cpp" />
     <ClCompile Include="GearRopeJoint.cpp" />
+    <ClCompile Include="GearVector.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayState.cpp" />
@@ -62,6 +63,7 @@
     <ClInclude Include="GearSettings.h" />
     <ClInclude Include="GearEngine.h" />
     <ClInclude Include="GearSprites.h" />
+    <ClInclude Include="GearVector.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayState.h" />

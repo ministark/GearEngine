@@ -137,6 +137,9 @@
     <ClCompile Include="GearQuadTree.cpp">
       <Filter>Source Files\GearEngine\EngineObjects</Filter>
     </ClCompile>
+    <ClCompile Include="GearVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GearSettings.h">
@@ -213,6 +216,9 @@
     </ClInclude>
     <ClInclude Include="GameMap.h">
       <Filter>Header Files\Game\GameMaps</Filter>
+    </ClInclude>
+    <ClInclude Include="GearVector.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
