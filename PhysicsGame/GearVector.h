@@ -18,6 +18,8 @@ namespace Gear {
 		float len(const GearVector  &);						// Returns the length of the vector
 		float operator * (const GearVector  &) const;		// Dot product for the vector
 		float dot(const GearVector  &);						// Same as Dot product
+		GearVector operator * (const float &) const;		// Multiples a scalar and return new vector
+		void s_mul(const float&);							// Multiplies a scalar to this vector
 		GearVector operator + (const GearVector  &) const;	// Returns the Addition of the two vector 
 		void add(GearVector const &);						// Add the second vector to itself
 		GearVector operator - (const GearVector  &) const;

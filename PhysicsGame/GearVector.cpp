@@ -31,6 +31,16 @@ float Gear::GearVector::dot(GearVector const &vec)
 	return (_x*vec._x + _y*vec._y);
 }
 
+GearVector Gear::GearVector::operator*(const float &s) const
+{
+	return GearVector(_x*s, _y*s);
+}
+
+void Gear::GearVector::s_mul(const float &s)
+{
+	_x *= s; _y *= s;
+}
+
 GearVector Gear::GearVector::operator+(const GearVector  &vec) const
 {
 	return GearVector(_x+vec._x, _y+vec._y);
