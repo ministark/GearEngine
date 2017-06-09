@@ -95,17 +95,17 @@ std::vector<GearPhysicsBody*> Gear::GearQuadTree::solve()
 		for (auto nite = scope.begin(); nite != scope.end(); ++nite) {
 			if ((*ite) != (*nite) && (*ite)->state == PHYSICS_AWAKE || (*nite)->state == PHYSICS_AWAKE) {
 				GearVector normal = (*ite)->Collide((*nite)); float min_e = min((*ite)->e, (*nite)->e);
+				float pen = normal.norm();
 				float velnorm = normal*((*nite)->_vel - (*ite)->_vel);
 				if (!normal.zero() && velnorm <= 0) {
-					float pen = normal.norm();
 					// Penetration correction
 					GearVector corr = normal*(max(pen - PHYSICS_SLOP, 0.0f) * PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass));
 					(*ite)->_pos -= corr*(*ite)->invmass; (*nite)->_pos += corr*(*nite)->invmass;
 					//Collison resolve
-					float j =  (1.0f + min_e) * (-velnorm) / ((*nite)->invmass + (*ite)->invmass);
+					float j = (1.0f + min_e) * (-velnorm) / ((*nite)->invmass + (*ite)->invmass);
 					GearVector impulse = normal * j;
-					(*ite)->_vel -= impulse*(*ite)->invmass;	(*ite)->state = PHYSICS_AWAKE;
-					(*nite)->_vel += impulse*(*nite)->invmass;	(*nite)->state = PHYSICS_AWAKE;
+					(*ite)->_vel -= impulse*(*ite)->invmass;	if ((*ite)->state != PHYSICS_STATIC) (*ite)->state = PHYSICS_AWAKE;
+					(*nite)->_vel += impulse*(*nite)->invmass;	if ((*nite)->state != PHYSICS_STATIC) (*nite)->state = PHYSICS_AWAKE;
 					if ((*ite)->OnCollision != 0)	 (*ite)->OnCollision((void*)(*ite), (void*)(*nite));
 					if ((*nite)->OnCollision != 0)	(*nite)->OnCollision((void*)(*nite), (void*)(*ite));
 				}
