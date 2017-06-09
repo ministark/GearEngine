@@ -1,5 +1,5 @@
 #include "GearDistanceJoint.h"
-
+using namespace Gear;
 
 
 GearDistanceJoint::GearDistanceJoint()
@@ -17,18 +17,11 @@ GearDistanceJoint::GearDistanceJoint(GearPhysicsBody *b1, GearPhysicsBody *b2, f
 
 void GearDistanceJoint::ResolveConstraint()
 {
-	float dx = (body1->x - body2->x), dy = (body1->y - body2->y), dr2 = dx*dx + dy*dy, dr = std::sqrt(dr2);
-	float dvx = (body1->vx - body2->vx), dvy = (body1->vy - body2->vy);
-	float force = Stiffness*(dr - Distance) + Dampning*(dvx*dx + dvy*dy) / dr;
-	if (body1->state != PHYSICS_STATIC) {
-		body1->vx += force*body1->invmass*PHYSICS_DT*-dx / dr;
-		body1->vy += force*body1->invmass*PHYSICS_DT*-dy / dr;
-	}
-	if (body2->state != PHYSICS_STATIC) {
-		body2->vx += force*body2->invmass*PHYSICS_DT* dx / dr;
-		body2->vy += force*body2->invmass*PHYSICS_DT* dy / dr;
-
-	}
+	GearVector dr = body1->_pos - body2->_pos;	float len = dr.norm();
+	GearVector dv = (body1->_vel - body2->_vel);
+	float force = Stiffness*(len - Distance) + Dampning*(dv*dr) / len;
+	body1->_vel -= dr*force*body1->invmass*PHYSICS_DT;
+	body2->_vel += dr*force*body2->invmass*PHYSICS_DT;
 }
 GearDistanceJoint::~GearDistanceJoint()
 {

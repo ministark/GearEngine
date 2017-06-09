@@ -23,7 +23,7 @@ namespace Gear {
 		void s_mul(const float&);							// Multiplies a scalar to this vector
 		GearVector operator + (const GearVector  &) const;	// Returns the Addition of the two vector 
 		void add(GearVector const &);						// Add the second vector to itself
-		void operator += (const GearVector  &);		// Adds the second vector to itself
+		void operator += (const GearVector  &);				// Adds the second vector to itself
 		GearVector operator - (const GearVector  &) const;
 		void sub(const GearVector  &);
 		void operator -= (const GearVector  &);

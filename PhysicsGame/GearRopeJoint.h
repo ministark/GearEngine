@@ -8,14 +8,15 @@ Also Dampness should be low in such cases
 Fix		:	Keep them close or Reduce the Stiffness and Dampning
 
 */
-class GearRopeJoint : public GearJoint 
-{
-public:
-	float Distance, Stiffness, Dampning;
-	GearRopeJoint();
-	GearRopeJoint(GearPhysicsBody*, GearPhysicsBody*, float , float, float);
+namespace Gear {
+	class GearRopeJoint : public GearJoint
+	{
+	public:
+		float Distance, Stiffness, Dampning;
+		GearRopeJoint();
+		GearRopeJoint(GearPhysicsBody*, GearPhysicsBody*, float, float, float);
 
-	void ResolveConstraint();
-	~GearRopeJoint();
-};
-
+		void ResolveConstraint();
+		~GearRopeJoint();
+	};
+}
