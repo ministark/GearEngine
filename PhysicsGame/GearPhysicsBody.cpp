@@ -54,7 +54,7 @@ Gear::GearVector GearPhysicsBody::Collide(GearPhysicsBody * b)
 {
 	float penx = -1*(fabs((_pos-b->_pos)._x)-(width/2)-(b->width/2)), peny = -1*(fabs((_pos-b->_pos)._y)-(height/2)-(b->height)/2);
 	if (penx > 0 && peny > 0) {
-		return (penx > peny) ? Gear::GearVector(0, (b->_pos._y-_pos._y>0 ? 1:-1)*PHYSICSY*peny): Gear::GearVector((b->_pos._x - _pos._x>0 ? 1 : -1)*PHYSICSX*penx, 0);
+		return (penx > peny) ? GearVector(0, (b->_pos._y-_pos._y>0 ? 1:-1)*peny): GearVector((b->_pos._x - _pos._x>0 ? 1 : -1)*penx, 0);
 	}
 	return Gear::GearVector(0,0);
 }

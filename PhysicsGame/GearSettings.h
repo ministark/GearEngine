@@ -12,10 +12,6 @@
 	#define SCREEN_WIDTH		1920
 	#define SCREEN_HEIGHT		1080
 
-// Codes For X and Y
-	#define PHYSICSX			1
-	#define PHYSICSY			-1
-
 // States of Physics Objects
 	#define PHYSICS_AWAKE		1
 	#define PHYSICS_SLEEP		2
