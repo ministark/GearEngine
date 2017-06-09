@@ -1,7 +1,7 @@
 #include "State.h" 
 #include "StateManager.h"
 #pragma once
-
+using namespace Gear;
 class PauseState: public Gear::State
 {
 public:

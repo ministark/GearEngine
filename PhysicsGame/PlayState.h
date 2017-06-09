@@ -6,6 +6,7 @@
 #include "Projectile.h"
 #pragma once
 
+using namespace Gear;
 class PlayState: public Gear::State
 {
 public:

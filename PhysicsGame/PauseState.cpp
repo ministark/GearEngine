@@ -1,5 +1,4 @@
 #include "PauseState.h"
-using namespace Gear;
 
 PauseState* PauseState::inst = NULL;
 

@@ -1,6 +1,5 @@
 #include "PlayState.h"
 
-using namespace Gear;
 
 PlayState* PlayState::inst = NULL;
 
