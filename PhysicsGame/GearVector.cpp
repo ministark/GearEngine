@@ -51,6 +51,11 @@ void Gear::GearVector::add(GearVector const &vec)
 	_x += vec._x; _y += vec._y;
 }
 
+void Gear::GearVector::operator+=(const GearVector &vec) 
+{
+	_x += vec._x; _y += vec._y;
+}
+
 GearVector Gear::GearVector::operator-(const GearVector &vec) const
 {
 	return GearVector(_x - vec._x, _y - vec._y);
