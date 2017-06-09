@@ -9,7 +9,6 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 	if (message == WM_CLOSE) {
 		PostQuitMessage(0);
 	}
-	
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 

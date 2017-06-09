@@ -1,7 +1,6 @@
 #include "GearPhysicsBody.h"
 using namespace Gear;
 
-
 void GearPhysicsBody::SetImage(GearSprite *img) {image = img;}
 
 void GearPhysicsBody::SetParent(void *prnt)
