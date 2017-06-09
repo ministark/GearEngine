@@ -2,9 +2,9 @@
 
 
 
-Button::Button(float xpos, float ypos, float w, float h, GearSprite *image , GearSprite * highlighted)
+Button::Button(GearVector &pos, float w, float h, GearSprite *image , GearSprite * highlighted)
 {
-	x = xpos; y = ypos; width = w; height = h; 
+	_pos = pos; width = w; height = h;
 	img = image;  	(highlighted == NULL) ? himg = img : himg = highlighted;
 	onFocus = 0;
 }
@@ -25,7 +25,7 @@ bool Button::InputListener(MSG *msg)
 	case WM_MOUSEMOVE:
 		float mouse_x = (float)((SCREEN_WIDTH / 2) - GET_X_LPARAM(msg->lParam));
 		float mouse_y = (float)((SCREEN_HEIGHT / 2) - GET_Y_LPARAM(msg->lParam));
-		onFocus = (fabs(mouse_x - x) < width / 2 && fabs(mouse_y - y) < height / 2) ? 1 : 0;
+		onFocus = (fabs(mouse_x - _pos._x) < width / 2 && fabs(mouse_y - _pos._y) < height / 2) ? 1 : 0;
 		break;
 	}
 	DefWindowProc(msg->hwnd, msg->message, msg->wParam, msg->lParam);
@@ -34,7 +34,7 @@ bool Button::InputListener(MSG *msg)
 
 void Button::Render()
 {
-	(onFocus) ? himg->RenderX(x,y,0,0,0,ONFOCUS_SCALE,  ONFOCUS_SCALE): img->Render(x, y);
+	(onFocus) ? himg->RenderX(_pos,0,0,0,ONFOCUS_SCALE,  ONFOCUS_SCALE): img->Render(_pos);
 }
 
 

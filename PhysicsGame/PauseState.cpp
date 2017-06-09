@@ -68,5 +68,5 @@ void PauseState::Update()
 
 void PauseState::Render()
 {
-	pauseimg->Render(0,0);
+	pauseimg->Render(GearVector(0,0));
 }

@@ -28,10 +28,10 @@ MenuState::~MenuState()
 void MenuState::Init()
 {
 	bpimg = geareng->CreateSprite(300, 100, "Image/Buttons/Play.png");
-	bplay = new Button(0, 0, 400, 150, bpimg);
+	bplay = new Button(GearVector::ZERO, 400, 150, bpimg);
 
 	beimg = geareng->CreateSprite(300, 100, "Image/Buttons/Exit.png");
-	bexit = new Button(0, -200, 400, 150, beimg);
+	bexit = new Button(GearVector(0, -200), 400, 150, beimg);
 
 }
 

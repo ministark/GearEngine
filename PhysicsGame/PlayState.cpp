@@ -29,7 +29,7 @@ void PlayState::Init()
 	//geareng->CreateGearRopeJoint(main->body, foe->body, 400, 100, 10);
 	efac = new FoeFactory(geareng, main);
 	efac->addEnemy();
-	key_w = 0; key_a = 0; key_s = 0; key_d = 0; key_shift = 0; mouse_l = 0; mouse_x = 0; mouse_y = 0;
+	key_w = 0; key_a = 0; key_s = 0; key_d = 0; key_shift = 0; mouse_l = 0; mouse.clear();
 	pkey_w = 0; pmouse_l = 0; pkey_shift = 0;
 }
 
@@ -58,16 +58,16 @@ void PlayState::InputHandle(MSG* msg)
 	case WM_LBUTTONDOWN:
 		SetCapture(msg->hwnd);
 		mouse_l = 1;
-		mouse_x = (float)((SCREEN_WIDTH / 2)	-	GET_X_LPARAM(msg->lParam));
-		mouse_y = (float)((SCREEN_HEIGHT / 2)	-	GET_Y_LPARAM(msg->lParam));
+		mouse._x = (float)((SCREEN_WIDTH / 2)	-	GET_X_LPARAM(msg->lParam));
+		mouse._y = (float)((SCREEN_HEIGHT / 2)	-	GET_Y_LPARAM(msg->lParam));
 		break;
 	case WM_LBUTTONUP:
 		mouse_l = 0;
 		ReleaseCapture();
 		break;
 	case WM_MOUSEMOVE:
-		mouse_x = (float)((SCREEN_WIDTH / 2) - GET_X_LPARAM(msg->lParam));
-		mouse_y = (float)((SCREEN_HEIGHT / 2) - GET_Y_LPARAM(msg->lParam));
+		mouse._x = (float)((SCREEN_WIDTH / 2) - GET_X_LPARAM(msg->lParam));
+		mouse._y = (float)((SCREEN_HEIGHT / 2) - GET_Y_LPARAM(msg->lParam));
 		break;
 	case WM_KEYDOWN:
 		switch (msg->wParam)
@@ -123,13 +123,12 @@ void PlayState::Update()
 		if (key_d) { main->addvx(-PLAYER_SENSITIVITY); }
 		if (key_w && !pkey_w /*&& fabs(main->body->vy) < VELOCITY_LOW*/ && main->isGrounded) { main->addvy(PLAYER_JUMP); } 
 		if (mouse_l && !pmouse_l) {
-			stars.push_back(new Projectile(geareng, main->body->x, main->body->y, (mouse_x - main->body->x)*BULLET_SPEED, (mouse_y - main->body->y)*BULLET_SPEED));
-			main->addvx(-(mouse_x - main->body->x)*BULLET_SPEED*PLAYER_RECOIL);
-			main->addvy(-(mouse_y - main->body->y)*BULLET_SPEED*PLAYER_RECOIL);
+			stars.push_back(new Projectile(geareng, main->body->_pos, (mouse- main->body->_pos)*BULLET_SPEED));
+			main->body->_vel -= (mouse - main->body->_pos)*BULLET_SPEED*PLAYER_RECOIL;
 		} 
 		//Velocity Restriction of moving
-		 (main->body->vx > 0) ? main->body->vx = min(PLAYER_SPEEDX, main->body->vx) : main->body->vx = max(-PLAYER_SPEEDX, main->body->vx);
-		 (main->body->vy > 0) ? main->body->vy = min(PLAYER_SPEEDY, main->body->vy) : main->body->vy = max(-PLAYER_SPEEDY, main->body->vy);
+		 (main->body->_vel._x>0) ? main->body->_vel._x = min(PLAYER_SPEEDX, main->body->_vel._x):main->body->_vel._x = max(-PLAYER_SPEEDX, main->body->_vel._x);
+		 (main->body->_vel._y > 0) ? main->body->_vel._y = min(PLAYER_SPEEDY, main->body->_vel._y) : main->body->_vel._y = max(-PLAYER_SPEEDY, main->body->_vel._y);
 	}
 	else {
 		if (key_a) { main->addvx(PLAYER_FLY); }
@@ -141,16 +140,15 @@ void PlayState::Update()
 		main->addvy(PHYSICS_GRAVITY);
 
 		//Velocity Restriction of Flying
-		(main->body->vx > 0) ? main->body->vx = min(PLAYER_FLYX, main->body->vx) : main->body->vx = max(-PLAYER_FLYX, main->body->vx);
-		(main->body->vy > 0) ? main->body->vy = min(PLAYER_FLYY, main->body->vy) : main->body->vy = max(-PLAYER_FLYY, main->body->vy);
+		(main->body->_vel._x > 0) ? main->body->_vel._x = min(PLAYER_FLYX, main->body->_vel._x) : main->body->_vel._x = max(-PLAYER_FLYX, main->body->_vel._x);
+		(main->body->_vel._y > 0) ? main->body->_vel._y = min(PLAYER_FLYY, main->body->_vel._y) : main->body->_vel._y = max(-PLAYER_FLYY, main->body->_vel._y);
 	}
 	if (key_shift && !pkey_shift) main->ishuman = !main->ishuman;
 	
 	//Add force to the bullet
 	if (!main->ishuman) {
 		for (auto ite = stars.begin(); ite != stars.end(); ++ite) {
-			(*ite)->body->vx += (mouse_x - (*ite)->body->x)*BULLET_REPOS;
-			(*ite)->body->vy += (mouse_y - (*ite)->body->y)*BULLET_REPOS;
+			(*ite)->body->_vel += (mouse - (*ite)->body->_pos)*BULLET_REPOS;
 		}
 	}
 	//Set the previous value
