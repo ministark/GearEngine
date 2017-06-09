@@ -74,7 +74,7 @@ void Gear::GearVector::operator-=(const GearVector &vec)
 
 bool Gear::GearVector::zero() const
 {	
-	return	(_x == 0 && _y == 0) ? 1 : -1;
+	return	(_x == 0 && _y == 0) ? 1 : 0;
 }
 
 void Gear::GearVector::clear()

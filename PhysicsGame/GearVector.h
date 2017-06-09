@@ -12,8 +12,6 @@ namespace Gear {
 		GearVector(float, float);
 		GearVector(const GearVector &);
 		~GearVector();
-		//Static
-		static GearVector ZERO;
 		//Utilities
 		float norm();										// Normalise the vector 
 		float len();										// Returns the length of the vector
