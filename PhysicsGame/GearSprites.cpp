@@ -1,5 +1,5 @@
 #include "GearSprites.h"
-
+using namespace Gear;
 
 
 void GearSprite::Remove()
