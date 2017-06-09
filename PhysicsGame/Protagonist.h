@@ -3,16 +3,16 @@
 #pragma once
 class Protagonist
 {
-	GearSprite *human,*skel;
+	Gear::GearSprite *human,*skel;
 public:
-	GearPhysicsBody  *body;
+	Gear::GearPhysicsBody  *body;
 	bool ishuman,isGrounded;
 	float jumptime;
 	bool dead;
 	int health;
 	void addvx(float);
 	void addvy(float);
-	Protagonist(GearEngine*);
+	Protagonist(Gear::GearEngine*);
 	void Update();
 	void Render();
 	~Protagonist();

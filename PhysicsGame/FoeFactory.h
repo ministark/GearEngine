@@ -7,10 +7,10 @@
 class FoeFactory
 {
 	std::list<Foe*> enemies;
-	GearEngine *geareng;
+	Gear::GearEngine *geareng;
 	Protagonist *main;
 public:
-	FoeFactory(GearEngine*, Protagonist*);
+	FoeFactory(Gear::GearEngine*, Protagonist*);
 	void addEnemy();
 	void UpdateAI(std::list<Projectile*> &);
 	void Render();

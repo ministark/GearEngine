@@ -36,7 +36,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 		NULL, NULL, hInstance, NULL);
 	ShowWindow(hWnd, nCmdShow);
 	// Game Engine
-	GearEngine *reng = new GearEngine();
+	Gear::GearEngine *reng = new Gear::GearEngine();
 	reng->initD3D(hWnd,NULL,NULL);
 	
 	// State manager

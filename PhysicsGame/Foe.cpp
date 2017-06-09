@@ -1,5 +1,5 @@
 #include "Foe.h"
-
+using namespace Gear;
 void foeOnCollision(void* A, void* B) {
 	GearPhysicsBody *body1 = (GearPhysicsBody*)A;
 	GearPhysicsBody *body2 = (GearPhysicsBody*)B;
@@ -25,7 +25,7 @@ void foeOnCollision(void* A, void* B) {
 	
 	}
 	else if (body2->ObjectType == GROUND) {
-		body1->vx > 0 ? body1->vx = max(0, body1->vx - PLAYER_FRICTION) : body1->vx = min(0, body1->vx + PLAYER_FRICTION);
+		body1->_vel._x > 0 ? body1->_vel._x = max(0, body1->_vel._x - PLAYER_FRICTION) : body1->_vel._x = min(0, body1->_vel._x + PLAYER_FRICTION);
 	}
 
 }
@@ -34,10 +34,8 @@ Foe::Foe(GearEngine *geareng)
 {
 	image = geareng->CreateSprite(50, 82, "Image/Enemy/Enemy.png");
 	float x = rand();
-	body = geareng->CreatePhysicsBody(	(rand() % SCREEN_WIDTH)-(SCREEN_WIDTH/2),
-										(rand() % SCREEN_HEIGHT) - (SCREEN_HEIGHT / 2),
-										/*(rand()%(2*FOE_SPEEDX)) - (FOE_SPEEDX)*/0,
-										/*(rand()%(2*FOE_SPEEDY)) - (FOE_SPEEDY)*/0,
+	body = geareng->CreatePhysicsBody(	GearVector ((rand() % SCREEN_WIDTH)-(SCREEN_WIDTH/2), (rand() % SCREEN_HEIGHT) - (SCREEN_HEIGHT / 2)),
+										GearVector (/*(rand()%(2*FOE_SPEEDX)) - (FOE_SPEEDX)*/0,/*(rand()%(2*FOE_SPEEDY)) - (FOE_SPEEDY)*/0 ),
 										50, 82, FOE_INVMASS, 0, PHYSICS_AWAKE);
 	body->SetObjectType(FOE);
 	body->SetOnCollisionListener(foeOnCollision);

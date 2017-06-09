@@ -3,11 +3,11 @@
 class Projectile
 {
 public:
-	GearSprite *img;
-	GearPhysicsBody *body;
+	Gear::GearSprite *img;
+	Gear::GearPhysicsBody *body;
 	bool dead;
 	int type;
-	Projectile(GearEngine*, float, float, float, float);
+	Projectile(Gear::GearEngine*, Gear::GearVector &, Gear::GearVector &);
 	void Render();
 	bool outOfScreen();
 	~Projectile();

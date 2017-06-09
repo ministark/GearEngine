@@ -1,5 +1,5 @@
 #include "Protagonist.h"
-
+using namespace Gear;
 
 void protOnCollision(void* A,void* B) {
 	GearPhysicsBody *body1 = (GearPhysicsBody*)A; GearPhysicsBody *body2 = (GearPhysicsBody*)B;
@@ -11,7 +11,7 @@ void protOnCollision(void* A,void* B) {
 		
 	}
 	else if (body2->ObjectType == FOE) {
-		body1->vx > 0 ? body1->vx = max(0, body1->vx - PLAYER_FRICTION) : body1->vx = min(0, body1->vx + PLAYER_FRICTION);
+		body1->_vel._x > 0 ? body1->_vel._x = max(0, body1->_vel._x - PLAYER_FRICTION) : body1->_vel._x = min(0, body1->_vel._x + PLAYER_FRICTION);
 
 	}
 	else if (body2->ObjectType == BULLET) {
@@ -24,28 +24,28 @@ void protOnCollision(void* A,void* B) {
 
 	}
 	else if (body2->ObjectType == GROUND) {
-		body1->vx > 0 ? body1->vx = max(0, body1->vx - PLAYER_FRICTION) : body1->vx = min(0, body1->vx + PLAYER_FRICTION);
+		body1->_vel._x > 0 ? body1->_vel._x = max(0, body1->_vel._x - PLAYER_FRICTION) : body1->_vel._x = min(0, body1->_vel._x + PLAYER_FRICTION);
 	}
 	main->isGrounded = 1;
 	main->jumptime = 0;
 }
 
-void Protagonist::addvx(float rvx)
+void Protagonist::addvx(float vx)
 {
-	body->vx += rvx;
+	body->_vel._x += vx;
 
 }
 
-void Protagonist::addvy(float rvy)
+void Protagonist::addvy(float vy)
 {
-	body->vy += rvy;
+	body->_vel._y += vy;
 }
 
 Protagonist::Protagonist(GearEngine *geareng)
 {
 	human	=	geareng->CreateSprite(50, 82, "Image/Character/Ninja.png");
 	skel	=	geareng->CreateSprite(50, 73, "Image/Character/Skeleton.png");
-	body	=	geareng->CreatePhysicsBody(-100, -100, 0, 0, 50, 82, PLAYER_INVMASS, 0, PHYSICS_AWAKE);
+	body	=	geareng->CreatePhysicsBody(GearVector(-100, -100),GearVector( 0, 0), 50, 82, PLAYER_INVMASS, 0, PHYSICS_AWAKE);
 	body->SetImage(human);
 	body->SetParent((void*)this);
 	body->SetObjectType(PLAYER);

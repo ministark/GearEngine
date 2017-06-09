@@ -2,9 +2,9 @@
 #pragma once
 class Walls
 {
-	GearPhysicsBody *left_wall, *right_wall, *bottom_wall, *top_wall;
+	Gear::GearPhysicsBody *left_wall, *right_wall, *bottom_wall, *top_wall;
 public:
-	Walls(GearEngine*);
+	Walls(Gear::GearEngine*);
 	~Walls();
 };
 

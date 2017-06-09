@@ -1,5 +1,5 @@
 #include "FoeFactory.h"
-
+using namespace Gear;
 
 
 FoeFactory::FoeFactory(GearEngine *eng, Protagonist *m)
@@ -23,11 +23,8 @@ void FoeFactory::UpdateAI(std::list<Projectile*> &stars)
 	if (rand() % 10 == 0) {
 		if (!enemies.empty() && main != NULL ) {
 			for (auto ite = enemies.begin(); ite != enemies.end(); ++ite) {
-				if (rand() % 10 == 0)stars.push_back(new Projectile(	geareng, (*ite)->body->x, 
-																		(*ite)->body->y, 
-																		(main->body->x - (*ite)->body->x) * BULLET_SPEED, 
-																		(main->body->y + 200 - (*ite)->body->y) * BULLET_SPEED  
-																	) );
+				if (rand() % 10 == 0)
+					stars.push_back(new Projectile(geareng, (*ite)->body->_pos, (main->body->_pos - (*ite)->body->_pos) * BULLET_SPEED) );
 			}
 		}
 	}
