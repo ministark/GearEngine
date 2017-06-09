@@ -7,7 +7,7 @@ public:
 	virtual void Init() = 0;
 	virtual void Render() = 0;
 	virtual void Reset() = 0;
-	GearEngine *geareng;
+	Gear::GearEngine *geareng;
 	~GameMap();
 };
 

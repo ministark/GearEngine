@@ -1,5 +1,5 @@
 #include "GearDistanceJointX.h"
-
+using namespace Gear;
 
 
 GearDistanceJointX::GearDistanceJointX()
@@ -16,13 +16,13 @@ GearDistanceJointX::GearDistanceJointX(GearPhysicsBody * b1, GearPhysicsBody *b2
 
 void GearDistanceJointX::ResolveConstraint()
 {
-	float dr = (body1->x - body2->x);
-	float force = Stiffness*(dr - Distance) + Dampning*((dr > 0 ? 1 : -1)*(body1->vx - body2->vx));
+	float dr = (body1->_pos._x - body2->_pos._x);
+	float force = Stiffness*(dr - Distance) + Dampning*((dr > 0 ? 1 : -1)*(body1->_vel._x - body2->_vel._x));
 	if (body1->state != PHYSICS_STATIC) {
-		body1->vx += (dr > 0 ? -1 : 1)*force*body1->invmass*PHYSICS_DT;
+		body1->_vel._x += (dr > 0 ? -1 : 1)*force*body1->invmass*PHYSICS_DT;
 	}
 	if (body2->state != PHYSICS_STATIC) {
-		body2->vx += (dr > 0 ? 1 : -1)*force*body2->invmass*PHYSICS_DT;
+		body2->_vel._x += (dr > 0 ? 1 : -1)*force*body2->invmass*PHYSICS_DT;
 	}
 	
 }

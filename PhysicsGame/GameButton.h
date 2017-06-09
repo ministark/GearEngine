@@ -1,12 +1,14 @@
 #include "Constants.h"
 #pragma once
+using namespace Gear;
 class GameButton
 {
 public:
 	GameButton();
 	virtual bool InputListener(MSG*) = 0;
 	virtual void Render() = 0;
-	float x, y, width, height;
+	GearVector _pos;
+	float width, height;
 	bool onFocus;
 	GearSprite *img, *himg;
 	~GameButton();

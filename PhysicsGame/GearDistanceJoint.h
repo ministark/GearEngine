@@ -8,13 +8,14 @@
 	Fix		:	Keep them close or Reduce the Stiffness and Dampning 
 
 */
-class GearDistanceJoint : public GearJoint
-{
-public:
-	float Distance, Stiffness, Dampning;
-	GearDistanceJoint();
-	GearDistanceJoint(GearPhysicsBody *, GearPhysicsBody*, float distance, float stiffness, float dampning);
-	void ResolveConstraint();
-	~GearDistanceJoint();
-};
-
+namespace Gear {
+	class GearDistanceJoint : public GearJoint
+	{
+	public:
+		float Distance, Stiffness, Dampning;
+		GearDistanceJoint();
+		GearDistanceJoint(GearPhysicsBody *, GearPhysicsBody*, float distance, float stiffness, float dampning);
+		void ResolveConstraint();
+		~GearDistanceJoint();
+	};
+}

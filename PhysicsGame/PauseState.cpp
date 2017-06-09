@@ -1,5 +1,4 @@
 #include "PauseState.h"
-using namespace Gear;
 
 PauseState* PauseState::inst = NULL;
 
@@ -68,5 +67,5 @@ void PauseState::Update()
 
 void PauseState::Render()
 {
-	pauseimg->Render(0,0);
+	pauseimg->Render(GearVector(0,0));
 }

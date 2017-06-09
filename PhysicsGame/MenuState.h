@@ -2,6 +2,7 @@
 #include "PlayState.h"
 #include "Button.h"
 #pragma once
+using namespace Gear;
 
 class MenuState : public Gear::State
 {

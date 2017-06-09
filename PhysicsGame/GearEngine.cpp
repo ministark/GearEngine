@@ -1,5 +1,5 @@
 #include "GearEngine.h"
-
+using namespace Gear;
 
 
 GearEngine::GearEngine()
@@ -29,7 +29,7 @@ void GearEngine::initD3D(HWND hWnd,bool (*ff)(),bool (*rf)())
 
 	d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);    // turn off the 3D lighting
 
-	quad_tree = new Gear::GearQuadTree( 0, -SCREEN_WIDTH, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+	quad_tree = new Gear::GearQuadTree( 0, GearVector(-SCREEN_WIDTH, -SCREEN_HEIGHT), GearVector( SCREEN_WIDTH, SCREEN_HEIGHT) );
 }
 
 void GearEngine::InitRender()
@@ -101,9 +101,9 @@ GearSprite * GearEngine::CreateSprite(float w, float h, std::string image)
 	return sprites->back();
 }
 
-GearPhysicsBody * GearEngine::CreatePhysicsBody(float x, float y, float vx, float vy, float width, float height, float invm,float e, int state)
+GearPhysicsBody * GearEngine::CreatePhysicsBody(GearVector &pos, GearVector &vel, float width, float height, float invm,float e, int state)
 {
-	pbodies->push_back(new GearPhysicsBody(x, y, vx, vy, width, height, invm, e, state));
+	pbodies->push_back(new GearPhysicsBody(pos, vel, width, height, invm, e, state));
 	return pbodies->back();
 }
 
@@ -142,30 +142,24 @@ void GearEngine::PhysicsEngine(float dt)
 
 	//Check for collisions
 	for (std::list<GearPhysicsBody*>::iterator ite = pbodies->begin(); ite != pbodies->end(); ++ite) {
-		if ((*ite)->state != PHYSICS_STATIC )(*ite)->vy -= PHYSICS_GRAVITY;
+		if ((*ite)->state != PHYSICS_STATIC )(*ite)->_vel._y -= PHYSICS_GRAVITY;
 		std::list<GearPhysicsBody*>::iterator nite = ite; ++nite;
 		while (nite != pbodies->end()) {
 			if ( (*ite)->state == PHYSICS_AWAKE || (*nite)->state == PHYSICS_AWAKE) {
-				float normal = (*ite)->Collide((*nite));
-				float min_e = min((*ite)->e, (*nite)->e);
-				//Resolve the collisions
-				if (normal > 0 && ((*nite)->vx - (*ite)->vx)*((*nite)->x - (*ite)->x) <= 0) {
-					float j = (1.0f+min_e) * ((*nite)->vx - (*ite)->vx); j /= (*nite)->invmass + (*ite)->invmass;
-					(*ite)->vx += j*(*ite)->invmass; (*nite)->vx += (-j)*(*nite)->invmass;
-					float corr = max(normal - PHYSICS_SLOP, 0.0f)*PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass);
-					if ((*ite)->state == PHYSICS_AWAKE) ((*ite)->x) += (((*ite)->x - (*nite)->x) > 0) ? (*ite)->invmass*corr : -(*ite)->invmass*corr;
-					if ((*nite)->state == PHYSICS_AWAKE) ((*nite)->x) += (((*nite)->x - (*ite)->x) > 0) ? (*nite)->invmass*corr : -(*nite)->invmass*corr;
-					if((*ite)->OnCollision != 0)	 (*ite)->OnCollision( (void*)(*ite), (void*)(*nite) );
-					if ((*nite)->OnCollision != 0)	(*nite)->OnCollision((void*)(*nite), (void*)(*ite) );
-				}
-				else if (normal < 0 && ((*nite)->vy - (*ite)->vy)*((*nite)->y - (*ite)->y) <= 0) {
-					float j = (1.0f + min_e) * ((*nite)->vy - (*ite)->vy); j /= (*nite)->invmass + (*ite)->invmass;
-					(*ite)->vy += j*(*ite)->invmass; (*nite)->vy += (-j)*(*nite)->invmass;
-					float corr = max(-normal - PHYSICS_SLOP, 0.0f)*PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass);
-					if ((*ite)->state == PHYSICS_AWAKE) ((*ite)->y) += (((*ite)->y - (*nite)->y) > 0) ? (*ite)->invmass*corr : -(*ite)->invmass*corr;
-					if ((*nite)->state == PHYSICS_AWAKE) ((*nite)->y) += (((*nite)->y - (*ite)->y) > 0) ? (*nite)->invmass*corr : -(*nite)->invmass*corr;
-					if ((*ite)->OnCollision != 0)	(*ite)->OnCollision((void*)(*ite), (void*)(*nite) );
-					if ((*nite)->OnCollision != 0)(	*nite)->OnCollision((void*)(*nite), (void*)(*ite) );
+				GearVector normal = (*ite)->Collide((*nite)); float min_e = min((*ite)->e, (*nite)->e);
+				float pen = normal.norm();
+				float velnorm = normal*((*nite)->_vel - (*ite)->_vel);
+				if (!normal.zero() && velnorm <= 0) {
+					// Penetration correction
+					GearVector corr = normal*(max(pen - PHYSICS_SLOP, 0.0f) * PHYSICS_PEN / ((*nite)->invmass + (*ite)->invmass));
+					(*ite)->_pos -= corr*(*ite)->invmass; (*nite)->_pos += corr*(*nite)->invmass;
+					//Collison resolve
+					float j = (1.0f + min_e) * (-velnorm) / ((*nite)->invmass + (*ite)->invmass);
+					GearVector impulse = normal * j;
+					(*ite)->_vel -= impulse*(*ite)->invmass;	if ((*ite)->state != PHYSICS_STATIC) (*ite)->state = PHYSICS_AWAKE;
+					(*nite)->_vel += impulse*(*nite)->invmass;	if ((*nite)->state != PHYSICS_STATIC) (*nite)->state = PHYSICS_AWAKE;
+					if ((*ite)->OnCollision != 0)	 (*ite)->OnCollision((void*)(*ite), (void*)(*nite));
+					if ((*nite)->OnCollision != 0)	(*nite)->OnCollision((void*)(*nite), (void*)(*ite));
 				}
 			}
 			++nite;
@@ -194,13 +188,12 @@ void GearEngine::Kinematics(float dt)
 {
 	for (std::list<GearPhysicsBody*>::iterator ite = pbodies->begin(); ite != pbodies->end(); ++ite) {
 		if ((*ite)->state != PHYSICS_STATIC) {
-			if (fabs((*ite)->vx) > PHYSICS_VMIN) (*ite)->x = (*ite)->x + (*ite)->vx*dt;
-			if (fabs((*ite)->vy) > PHYSICS_VMIN) (*ite)->y = (*ite)->y + (*ite)->vy*dt;
-
+			if ((*ite)->_vel.len() > PHYSICS_VMIN) {
+				(*ite)->_pos += (*ite)->_vel*dt;
+			}
 		}
 		else {
-			(*ite)->vx = 0;
-			(*ite)->vy = 0;
+			(*ite)->_vel.clear();
 		}
 	}
 }

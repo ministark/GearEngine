@@ -1,5 +1,5 @@
 #include "GearJoint.h"
-
+using namespace Gear;
 
 
 GearJoint::GearJoint()

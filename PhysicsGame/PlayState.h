@@ -6,6 +6,7 @@
 #include "Projectile.h"
 #pragma once
 
+using namespace Gear;
 class PlayState: public Gear::State
 {
 public:
@@ -28,7 +29,7 @@ public:
 
 	//Input Variables
 	bool key_w, key_a, key_s, key_d, key_shift, mouse_l, pkey_w, pkey_shift, pmouse_l;
-	float mouse_x, mouse_y;
+	GearVector mouse;
 
 private:
 	GameMap *map;

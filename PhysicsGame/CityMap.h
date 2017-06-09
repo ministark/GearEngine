@@ -4,14 +4,14 @@
 class CityMap : public GameMap 
 {
 public:
-	CityMap(GearEngine*);
+	CityMap(Gear::GearEngine*);
 	void Init();
 	void Render();
 	void Reset();
 private:
-	GearSprite  *background, *sun, *black, *black2;
-	GearPhysicsBody *leftwall, *rightwall, *lhinge, *rhinge, *bottomwall, *midwall, *rightplatform, *righthinge;
-	std::vector<GearPhysicsBody*> bridge;
+	Gear::GearSprite  *background, *sun, *black, *black2;
+	Gear::GearPhysicsBody *leftwall, *rightwall, *lhinge, *rhinge, *bottomwall, *midwall, *rightplatform, *righthinge;
+	std::vector<Gear::GearPhysicsBody*> bridge;
 	Walls *edges;
 	~CityMap();
 };

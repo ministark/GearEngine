@@ -138,7 +138,7 @@
       <Filter>Source Files\GearEngine\EngineObjects</Filter>
     </ClCompile>
     <ClCompile Include="GearVector.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GearEngine\EngineObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -218,7 +218,7 @@
       <Filter>Header Files\Game\GameMaps</Filter>
     </ClInclude>
     <ClInclude Include="GearVector.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GearEngine\EngineObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 #include "GearDistanceJointY.h"
-
+using namespace Gear;
 
 
 GearDistanceJointY::GearDistanceJointY()
@@ -16,14 +16,10 @@ GearDistanceJointY::GearDistanceJointY(GearPhysicsBody * b1, GearPhysicsBody *b2
 
 void GearDistanceJointY::ResolveConstraint()
 {
-	float dr = (body1->y - body2->y);
-	float force = Stiffness*(dr-Distance) + Dampning*((dr > 0 ? 1:-1)*(body1->vy - body2->vy));
-	if (body1->state != PHYSICS_STATIC) {
-		body1->vy += (dr > 0 ? -1 : 1)*force*body1->invmass*PHYSICS_DT;
-	}
-	if (body2->state != PHYSICS_STATIC) {
-		body2->vy += (dr > 0 ? 1 : -1)*force*body2->invmass*PHYSICS_DT;
-	}
+	float dr = (body1->_pos._y - body2->_pos._y);
+	float force = Stiffness*(dr-Distance) + Dampning*((dr > 0 ? 1:-1)*(body1->_vel._y - body2->_vel._y));
+	body1->_vel._y += (dr > 0 ? -1 : 1)*force*body1->invmass*PHYSICS_DT;
+	body2->_vel._y += (dr > 0 ? 1 : -1)*force*body2->invmass*PHYSICS_DT;
 
 }
 

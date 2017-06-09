@@ -1,5 +1,5 @@
 #include "Projectile.h"
-
+using namespace Gear;
 void projOnCollision(void* A, void* B) {
 	GearPhysicsBody *body1 = (GearPhysicsBody*)A; GearPhysicsBody *body2 = (GearPhysicsBody*)B;
 	
@@ -27,10 +27,10 @@ void projOnCollision(void* A, void* B) {
 	}
 }
 
-Projectile::Projectile(GearEngine* geareng, float rx, float ry, float rvx, float rvy)
+Projectile::Projectile(GearEngine* geareng, GearVector &pos, GearVector &vel)
 {
 	img = geareng->CreateSprite(25, 25, "Image/Bullet/Star.png");
-	body = geareng->CreatePhysicsBody(rx, ry, rvx, rvy, 25, 25, BULLET_INVMASS, BULLET_E, PHYSICS_AWAKE);
+	body = geareng->CreatePhysicsBody(pos, vel, 25, 25, BULLET_INVMASS, BULLET_E, PHYSICS_AWAKE);
 	body->SetObjectType(BULLET);
 	body->SetImage(img);
 	body->SetParent((void*)this);
@@ -40,13 +40,13 @@ Projectile::Projectile(GearEngine* geareng, float rx, float ry, float rvx, float
 
 void Projectile::Render()
 {
-	rot -= (body->vx >0 ? 1:-1)*(fabs(body->vx)+fabs(body->vy))*BULLET_ANIMATION;
+	rot -= (body->_vel._x > 0 ? 1 : -1)*(fabs(body->_vel._x) + fabs(body->_vel._y))*BULLET_ANIMATION;
 	body->RenderX(0,0,rot,1,1);
 }
 
 bool Projectile::outOfScreen()
 {
-	return (fabs(body->x) > SCREEN_WIDTH / 2 && fabs(body->y) > SCREEN_HEIGHT / 2);
+	return (fabs(body->_pos._x) > SCREEN_WIDTH / 2 && fabs(body->_pos._y) > SCREEN_HEIGHT / 2);
 }
 
 

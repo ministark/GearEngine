@@ -2,12 +2,12 @@
 #pragma once
 class Foe
 {
-	GearSprite *image;
+	Gear::GearSprite *image;
 public:
-	GearPhysicsBody  *body;
+	Gear::GearPhysicsBody  *body;
 	int health;
 	bool dead;
-	Foe(GearEngine*);
+	Foe(Gear::GearEngine*);
 	void Render();
 	~Foe();
 };
