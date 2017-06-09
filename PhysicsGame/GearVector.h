@@ -14,8 +14,8 @@ namespace Gear {
 		~GearVector();
 
 		//Utilities
-		float norm();										// Normalise the vector and returns the length of the vector
-		float len(const GearVector  &);						// Returns the length of the vector
+		float norm();										// Normalise the vector 
+		float len();										// Returns the length of the vector
 		float operator * (const GearVector  &) const;		// Dot product for the vector
 		float dot(const GearVector  &);						// Same as Dot product
 		GearVector operator * (const float &) const;		// Multiples a scalar and return new vector
@@ -25,6 +25,9 @@ namespace Gear {
 		void operator += (const GearVector  &);		// Adds the second vector to itself
 		GearVector operator - (const GearVector  &) const;
 		void sub(const GearVector  &);
+		void operator -= (const GearVector  &);
+		bool zero() const;
+		void clear();
 	};
 
 }

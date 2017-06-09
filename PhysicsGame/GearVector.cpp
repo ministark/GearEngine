@@ -67,6 +67,21 @@ void Gear::GearVector::sub(const GearVector &vec)
 
 }
 
+void Gear::GearVector::operator-=(const GearVector &vec)
+{
+	_x -= vec._x; _y -= vec._y;
+}
+
+bool Gear::GearVector::zero() const
+{	
+	return	(_x == 0 && _y == 0) ? 1 : -1;
+}
+
+void Gear::GearVector::clear()
+{
+	_x = 0; _y = 0;
+}
+
 float Gear::GearVector::norm()
 {
 	float r = std::sqrtf(powf(_x, 2) + powf(_y, 2));
@@ -74,7 +89,7 @@ float Gear::GearVector::norm()
 	return r;
 }
 
-float Gear::GearVector::len(GearVector const &)
+float Gear::GearVector::len()
 {
 	return  std::sqrtf(powf(_x, 2) + powf(_y, 2));
 
