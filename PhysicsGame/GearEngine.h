@@ -24,9 +24,9 @@ namespace Gear {
 		IDirect3DTexture9 *g_texture = NULL;
 		GearSprite* tri;
 		bool(*FrameFunc)(), (*RenderFunc)();
-		std::list<GearSprite*> *sprites;
-		std::list<GearPhysicsBody*> *pbodies;
-		std::list<GearJoint*> *joints;
+		std::list<GearSprite*> sprites;
+		std::list<GearPhysicsBody*> pbodies;
+		std::list<GearJoint*> joints;
 		Gear::GearQuadTree* quad_tree;
 	public:
 		GearEngine();
