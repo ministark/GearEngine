@@ -63,6 +63,9 @@
     <Filter Include="Header Files\Game\GameMaps">
       <UniqueIdentifier>{b739bc21-5208-412e-848e-c7a7a64b69cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GearEngine\Shaders">
+      <UniqueIdentifier>{2c317675-32ee-45dc-979b-38c2a554749e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GearSprites.cpp">
@@ -223,5 +226,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>Source Files\GearEngine\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
