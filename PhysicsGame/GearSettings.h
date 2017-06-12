@@ -22,7 +22,7 @@
 	#define PHYSICS_VMAX		10 
 	#define PHYSICS_DT			0.05f
 	#define PHYSICS_FREEZE		10
-	#define PHYSICS_GRAVITY		5.0f	
+	#define PHYSICS_GRAVITY		0//5.0f	
 	#define PHYSICS_PEN			0.6f
 	#define PHYSICS_SLOP		0.1f
 
@@ -38,7 +38,5 @@
 	#define CAMERA_UPZ			0.0f
 // Vertex used in the engine
 	#define CUSTOMFVF (D3DFVF_XYZ|D3DFVF_DIFFUSE|D3DFVF_TEX1)
-	struct CUSTOMVERTEX { FLOAT X, Y, Z; DWORD COLOR; FLOAT U, V; };
-
-
+struct CUSTOMVERTEX { FLOAT X, Y, Z; D3DCOLOR COLOR; FLOAT U, V; };
 #pragma once
