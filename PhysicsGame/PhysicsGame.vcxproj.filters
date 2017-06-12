@@ -143,6 +143,9 @@
     <ClCompile Include="GearVector.cpp">
       <Filter>Source Files\GearEngine\EngineObjects</Filter>
     </ClCompile>
+    <ClCompile Include="DebugState.cpp">
+      <Filter>Source Files\Game\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GearSettings.h">
@@ -222,6 +225,9 @@
     </ClInclude>
     <ClInclude Include="GearVector.h">
       <Filter>Header Files\GearEngine\EngineObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugState.h">
+      <Filter>Header Files\Game\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

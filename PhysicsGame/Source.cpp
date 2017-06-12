@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <windowsx.h>
 #include "MenuState.h"
+#include "DebugState.h" 
 #include <ctime>
 
 // the WindowProc function prototype
@@ -42,7 +43,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 	Gear::StateManager *sm = Gear::StateManager::GetInstance(reng);
 	
 	//Add the Scene
-	sm->AddState(MenuState::GetInstance(reng));
+	sm->AddState(DebugState::GetInstance(reng));
 	
 	// Game Loop
 	while (!sm->RunScene()) {}

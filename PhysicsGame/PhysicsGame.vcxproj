@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CityMap.cpp" />
+    <ClCompile Include="DebugState.cpp" />
     <ClCompile Include="Foe.cpp" />
     <ClCompile Include="FoeFactory.cpp" />
     <ClCompile Include="GameButton.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="CityMap.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="DebugState.h" />
     <ClInclude Include="Foe.h" />
     <ClInclude Include="FoeFactory.h" />
     <ClInclude Include="GameButton.h" />
