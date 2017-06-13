@@ -1,43 +1,33 @@
 // transformations provided by the app:
-float4x4 matWorldViewProj: WORLDVIEWPROJECTION;
-
-// the format of our vertex data
-struct VS_INPUT
-{
-	float4 Pos : POSITION;
-	DWORD Col : COLOR0;
-	float2 Tex : TEXCOORD1;
-};
+float4x4 ShaderMatrix;
 
 struct VS_OUTPUT
 {
-	float4 Pos  : POSITION;
-	float2 Tex : TEXCOORD1;
+		float4 PositionOut : POSITION;
+		float4 ColorOut : COLOR;
 };
 
-// Vertex Shader - simply carry out transformation
-VS_OUTPUT VS(VS_INPUT In)
+//Vertex Shader
+
+VS_OUTPUT VS(float4 PositionIn : POSITION, float4 ColorIn : COLOR)
 {
-	VS_OUTPUT Out = (VS_OUTPUT)0;
-	Out.Pos = mul(In.Pos, matWorldViewProj);
-	Out.Tex = In.Tex;
-	return Out;
+		VS_OUTPUT VertexOut;
+		VertexOut.PositionOut = mul(PositionIn, ShaderMatrix);
+		VertexOut.ColorOut = ColorIn;
+		return VertexOut;
 }
 
-sampler Image;
-// Pixel shader that calculates ambient light
-float4 PS(VS_OUTPUT V): COLOR
+//Pixel Shader
+float4 PS(float4 Color : COLOR) : COLOR
 {
-	return tex2D (Image,V.Tex);
+		return Color;
 }
 
-// Effect technique to be used
-technique TVertexAndPixelShader
+technique RenderScene
 {
-	pass P0
+		pass P0
 	{
-		
-		VertexShader = compile vs_2_0 VS();
-		PixelShader = compile ps_2_0 PS();
+			VertexShader = compile vs_2_0 VS();
+			PixelShader = compile ps_2_0 PS();
 	}
 }

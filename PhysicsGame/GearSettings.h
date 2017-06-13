@@ -37,6 +37,10 @@
 	#define CAMERA_UPY			1.0f
 	#define CAMERA_UPZ			0.0f
 // Vertex used in the engine
-	#define CUSTOMFVF (D3DFVF_XYZ|D3DFVF_DIFFUSE|D3DFVF_TEX1)
-struct CUSTOMVERTEX { FLOAT X, Y, Z; D3DCOLOR COLOR; FLOAT U, V; };
+	#define CUSTOMFVF (D3DFVF_XYZ|D3DFVF_DIFFUSE | D3DFVF_TEX1)
+	#define CUSTOMFVF2 (D3DFVF_XYZ|D3DFVF_DIFFUSE)
+
+struct CUSTOMVERTEX { FLOAT X, Y, Z;D3DCOLOR COLOR; FLOAT U, V; };
+struct CUSTOMVERTEX2 { float x, y, z; DWORD color;};
+
 #pragma once

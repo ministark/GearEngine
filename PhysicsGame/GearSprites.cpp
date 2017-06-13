@@ -44,50 +44,57 @@ GearSprite::GearSprite(LPDIRECT3DDEVICE9 D3ddev, float w, float h, std::string i
 // Results Translation of the Sprite by X, Y and Draws it on the Back Buffer
 void GearSprite::Render(Gear::GearVector &vec)
 {
-	RenderShader(vec);
-	//d3ddev->SetStreamSource(0, v_buffer, 0, sizeof(CUSTOMVERTEX));
-
-	//d3ddev->SetFVF(CUSTOMFVF);
-
-	//// Transforming the sprite
-	//D3DXMATRIX matTransform;
-	//D3DXMatrixTranslation(&matTransform, vec._x, vec._y, 0);
-
-	//// tell Direct3D about our matrix
-	//d3ddev->SetTransform(D3DTS_WORLD, &(matTransform));
-	//d3ddev->SetIndices(i_buffer);
-
-	//// Setting Texture
-	//d3ddev->SetTexture(0, g_texture);
-	//// copy the vertex buffer to the back buffer
-	//d3ddev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
-}
-
-void Gear::GearSprite::RenderShader(Gear::GearVector &vec)
-{
+	//RenderShader(vec);
 	d3ddev->SetStreamSource(0, v_buffer, 0, sizeof(CUSTOMVERTEX));
+
 	d3ddev->SetFVF(CUSTOMFVF);
-
-	ID3DXEffect* pEffect = NULL;
-	LPD3DXBUFFER error;
-	HRESULT hResult = D3DXCreateEffectFromFile(d3ddev, "TestEffect.fx", NULL, NULL, 0, NULL, &pEffect, &error);
-	
-	//char* temp = (char*)error->GetBufferPointer();
-	//OutputDebugString(temp);
-
-
-	pEffect->SetTexture("Image", g_texture);
 
 	// Transforming the sprite
 	D3DXMATRIX matTransform;
 	D3DXMatrixTranslation(&matTransform, vec._x, vec._y, 0);
-	pEffect->SetMatrix("matWorldViewProj", &matTransform);
-	D3DXHANDLE  hTech = pEffect->GetTechniqueByName("TVertexAndPixelShader");
-	pEffect->SetTechnique(hTech);
-	
-	UINT pass; pEffect->Begin(&pass, 0);
-	pEffect->BeginPass(0);	pEffect->EndPass();	
-	pEffect->End();
+
+	// tell Direct3D about our matrix
+	d3ddev->SetTransform(D3DTS_WORLD, &(matTransform));
+	d3ddev->SetIndices(i_buffer);
+
+	// Setting Texture
+	d3ddev->SetTexture(0, g_texture);
+	// copy the vertex buffer to the back buffer
+	d3ddev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
+}
+
+void Gear::GearSprite::RenderShader(Gear::GearVector &vec)
+{
+	//d3ddev->SetFVF(CUSTOMFVF);
+	//d3ddev->SetStreamSource(0, v_buffer, 0, sizeof(CUSTOMVERTEX));
+	//d3ddev->SetIndices(i_buffer);
+
+	//LPD3DXEFFECT pEffect = NULL;
+	//LPD3DXBUFFER error;
+	//HRESULT hResult = D3DXCreateEffectFromFile(d3ddev, "TestEffect.fx", NULL, NULL, 0, NULL, &pEffect, &error);
+	//
+	////char* temp = (char*)error->GetBufferPointer();
+	////OutputDebugString(temp);
+
+	//D3DXMATRIX matTransform;
+	///*pEffect->SetTexture("Image", g_texture);
+	//D3DXMatrixTranslation(&matTransform, vec._x, vec._y, 0);
+	//pEffect->SetMatrix("matWorldViewProj", &matTransform);*/
+	//D3DXMatrixIdentity(&matTransform);
+	//pEffect->SetMatrix("ShaderMatrix", &matTransform);
+
+	////D3DXHANDLE  hTech = pEffect->GetTechniqueByName("RenderScene");
+	////pEffect->SetTechnique(hTech);
+	//
+	//UINT pass = 0;
+	//pEffect->Begin(&pass, 0);
+	//for (UINT i = 0;i<pass;i++)
+	//{
+	//	pEffect->BeginPass(i); // Set the pass
+	//	d3ddev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
+	//	pEffect->EndPass();
+	//}
+	//pEffect->End();
 
 }
 
